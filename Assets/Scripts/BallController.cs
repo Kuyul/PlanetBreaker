@@ -5,52 +5,44 @@ using UnityEngine;
 public class BallController : MonoBehaviour {
 
     //Declare Public variables
-    public float OrbitHeight1 = 2.5f;
-    public float FallStep = 0.1f;
+    public float OrbitHeight;
+    public float PushForce;
 
     //Declare Private variables
-    private float CurrentHeight = 0;
-    private bool Down = false;
+    private Rigidbody2D rb;
+    private bool test;
 
 	// Use this for initialization
 	void Start () {
-        CurrentHeight = OrbitHeight1;
-        transform.localPosition = new Vector3(0, CurrentHeight, 0);
+        rb = GetComponent<Rigidbody2D>();
+        rb.transform.localPosition = new Vector2(0, OrbitHeight);      
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-        if (Input.GetMouseButton(0))
+	void Update () {
+        if (Input.GetMouseButtonDown(0))
         {
-            Down = true;
+            test = true;
+            //rb.AddForce(-Vector2.up*PushForce);
+            //rb.MovePosition(Vector2.up * PushForce);
+            Debug.Log("true");
         }
-
-        //User clicked, ball speeds down.
-        if (Down)
+        if (test)
         {
-            CurrentHeight -= FallStep;
-            transform.localPosition = new Vector3(0, CurrentHeight, 0);
-        }
-        else
-        {
-            if (CurrentHeight < OrbitHeight1)
-            {
-                CurrentHeight += FallStep;
-                if(CurrentHeight > OrbitHeight1)
-                {
-                    CurrentHeight = OrbitHeight1;
-                }
-                transform.localPosition = new Vector3(0, CurrentHeight, 0);
-            }
+            AddForce();
         }
 	}
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void AddForce()
     {
-        //When planet is hit, put the ball back into orbit
+        rb.velocity = Vector2.up * PushForce;
+        test = false;
+        Debug.Log("turn");
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if(collision.tag == "Planet")
         {
-            Down = false;
+            //rb.AddForce(Vector2.up * PushForce);
         }
     }
 }

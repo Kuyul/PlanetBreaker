@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //Declare Public Variables
-    public float AngularVelocity = 30.0f;
+    public float AngularVelocity;
 
     //Declare Private Variables
     private Rigidbody2D rb;
