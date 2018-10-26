@@ -49,7 +49,7 @@ public class BallController : MonoBehaviour
         //while "Down" ball speeds down.
         if (Down)
         {
-            NewPosition -= FallVector;
+            NewPosition = new Vector3(0,2.0f,0);
         }
 
         //while "Up" the ball speeds up.
