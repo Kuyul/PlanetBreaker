@@ -19,12 +19,11 @@ public class BallController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
         //Initialise orbit
         Lvl = 0;
         transform.localPosition = new Vector3(0, OrbitHeights[Lvl], 0); //Set the initial player position to the height of the first orbit layer
 
-        FallVector = new Vector3(0, FallSpeed, 0);
+        FallVector = new Vector3(0, FallSpeed * Time.deltaTime, 0);
         UpVector = new Vector3(0, BounceSpeed, 0);
     }
 	
@@ -62,6 +61,33 @@ public class BallController : MonoBehaviour {
         }
 	}
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //But the ball back into orbit if it hits a black tile
+        if(collision.tag == "BlackTile")
+        {
+            //Nothing happens
+        }
+        //Game Over if it hits a red tile
+        else if(collision.tag == "RedTile")
+        {
+            //TODO: implement gameover
+        }
+        //If it hits a white tile, the tile changes to a Black Tile
+        else if(collision.tag == "WhiteTile")
+        {
+            //collision.gameObject.SetActive(false);
+            //TODO: implement white tile
+        }
+        //If it hits a yellow tile, break the tile and go up a level
+        else if(collision.tag == "YellowTile")
+        {
+            //collision.gameObject.SetActive(false);
+            if(Lvl + 1 < OrbitHeights.Length)
+            Lvl++;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         //When planet is hit, put the ball back into orbit
@@ -78,5 +104,10 @@ public class BallController : MonoBehaviour {
         {
             Clickable = true;
         }
+    }
+
+    public int GetOrbitLevel()
+    {
+        return Lvl;
     }
 }

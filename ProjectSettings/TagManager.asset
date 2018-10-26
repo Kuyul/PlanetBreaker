@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Planet
+  - BlackTile
+  - WhiteTile
+  - RedTile
+  - YellowTile
   layers:
   - Default
   - TransparentFX
