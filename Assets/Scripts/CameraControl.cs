@@ -26,7 +26,8 @@ public class CameraControl : MonoBehaviour
         float ballHeight = Ball.localPosition.y;
         int lvl = Gc.GetOrbitLevel();
         float[] orbitHeights = Gc.GetOrbitHeights();
-        if (ballHeight < orbitHeights[lvl] && ballHeight > orbitHeights[0])
+        if(lvl > 0)
+        if (ballHeight > orbitHeights[lvl-1])
         {
             float scale = Ball.localPosition.y / orbitHeights[0];
             Cam.orthographicSize = CamOrigSize * scale;
