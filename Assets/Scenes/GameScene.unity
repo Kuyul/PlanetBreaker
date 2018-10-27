@@ -677,13 +677,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796aa1432ead5d749ae1f10d870e204d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FallSpeed: 10
-  BounceSpeed: 0.1
+  FallSpeed: 0.2
+  BounceSpeed: 0.4
   OrbitHeights:
   - 2.5
-  - 3
   - 3.5
-  - 4
+  - 4.5
+  - 5.5
+  - 6.5
 --- !u!58 &727635542
 CircleCollider2D:
   m_ObjectHideFlags: 0
