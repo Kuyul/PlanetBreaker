@@ -59,7 +59,7 @@ public class BallController : MonoBehaviour
         }
 
         //At any time if the position of the ball is higher than the orbit, adjust to the current orbit's height
-        if (transform.localPosition.y > OrbitHeights[Lvl])
+        if (NewPosition.y > OrbitHeights[Lvl])
         {
             NewPosition = new Vector3(0, OrbitHeights[Lvl], 0);
             Up = false;
