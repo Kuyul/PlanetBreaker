@@ -10,6 +10,8 @@ public class CameraControl : MonoBehaviour
     //Declare private variables
     private Camera Cam;
     private float CamOrigSize;
+    private float CamTargetSize;
+    private float CamDiff;
     private GameControl Gc;
     private int CurrentLevel;
     private int PreviousLevel;
@@ -40,22 +42,23 @@ public class CameraControl : MonoBehaviour
         if(CurrentLevel > PreviousLevel)
         {
             GoingUp = true;
-        }else if (CurrentLevel < PreviousLevel)
+            LevelReset = false;
+            var scale = orbitHeights[CurrentLevel] / orbitHeights[PreviousLevel];
+            CamTargetSize = Cam.orthographicSize * scale;
+            CamDiff = CamTargetSize - Cam.orthographicSize;
+        }
+        else if (CurrentLevel < PreviousLevel)
         {
+            GoingUp = false;
             LevelReset = true;
         }
 
         //When the ball is going up up a orbit
         if (GoingUp)
         {
-            if (ballHeight > orbitHeights[CurrentLevel - 1])
-            {
-                float scale = Ball.localPosition.y / orbitHeights[0];
-                Cam.orthographicSize = CamOrigSize * scale;
-            }
+            Cam.orthographicSize += CamDiff / 20;
 
-            //When the ball has reached the orbit height, set goingup bool to false
-            if(ballHeight == orbitHeights[CurrentLevel])
+            if (Cam.orthographicSize >= CamTargetSize)
             {
                 GoingUp = false;
             }
