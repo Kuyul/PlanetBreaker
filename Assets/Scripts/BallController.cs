@@ -59,10 +59,11 @@ public class BallController : MonoBehaviour
         }
 
         //At any time if the position of the ball is higher than the orbit, adjust to the current orbit's height
-        if (NewPosition.y > OrbitHeights[Lvl])
+        if (NewPosition.y >= OrbitHeights[Lvl])
         {
             NewPosition = new Vector3(0, OrbitHeights[Lvl], 0);
             Up = false;
+            Clickable = true;
         }
 
         transform.localPosition = NewPosition;
@@ -76,7 +77,7 @@ public class BallController : MonoBehaviour
             //But the ball back into orbit if it hits a black tile
             if (collision.tag == "BlackTile")
             {
-                Lvl = 0;
+                SetOrbitLevel(0);
                 //Nothing happens
             }
             //Game Over if it hits a red tile
@@ -95,7 +96,7 @@ public class BallController : MonoBehaviour
             {
                 //collision.gameObject.SetActive(false);
                 if (Lvl + 1 < OrbitHeights.Length)
-                    Lvl++;
+                    SetOrbitLevel(Lvl + 1);
             }
         }
     }
@@ -114,12 +115,19 @@ public class BallController : MonoBehaviour
     {
         if (collision.tag == "Planet")
         {
-            Clickable = true;
+            //Clickable = true;
         }
     }
 
     public int GetOrbitLevel()
     {
         return Lvl;
+    }
+
+    public void SetOrbitLevel(int level)
+    {
+        Lvl = level;
+        FallVector = new Vector3(0,FallSpeed,0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
+        UpVector = new Vector3(0, BounceSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
     }
 }
