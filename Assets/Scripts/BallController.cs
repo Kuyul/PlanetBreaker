@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-
     //Declare Public variables
     public float FallSpeed = 0.01f;
     public float BounceSpeed = 0.2f;
     public float[] OrbitHeights;
 
+    public bool Down = false;
+    public bool Up = false;
+
     //Declare Private variables
-    private bool Down = false;
-    private bool Up = false;
+
     private bool Clickable = true;
     private int Lvl;
     private Vector3 FallVector;
@@ -77,6 +78,7 @@ public class BallController : MonoBehaviour
             //But the ball back into orbit if it hits a black tile
             if (collision.tag == "BlackTile")
             {
+                GameControl.Instance.Bounce();
                 SetOrbitLevel(0);
                 //Nothing happens
             }
@@ -88,34 +90,22 @@ public class BallController : MonoBehaviour
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
             {
-                //collision.gameObject.SetActive(false);
-                //TODO: implement white tile
+                GameControl.Instance.Bounce();
+                GameControl.Instance.DestroyTiles();
+                GameControl.Instance.ArrangeTile();
             }
             //If it hits a yellow tile, break the tile and go up a level
             else if (collision.tag == "YellowTile")
             {
-                //collision.gameObject.SetActive(false);
+                GameControl.Instance.Bounce();
+                GameControl.Instance.DestroyTiles();
+                GameControl.Instance.ArrangeTile();
+
                 if (Lvl + 1 < OrbitHeights.Length)
-                    SetOrbitLevel(Lvl + 1);
+                SetOrbitLevel(Lvl + 1);
+
+                // perfect feedback?
             }
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //When planet is hit, put the ball back into orbit
-        if (collision.tag == "Planet")
-        {
-            Down = false;
-            Up = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Planet")
-        {
-            //Clickable = true;
         }
     }
 
