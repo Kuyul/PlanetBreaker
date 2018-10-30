@@ -17,12 +17,20 @@ public class GameControl : MonoBehaviour {
     public SpriteRenderer rend;
     public Sprite[] planets;
 
+    public SpriteRenderer rendBackground;
+    public Sprite[] backgrounds;
+
     public int NumOfTiles;
 
     public GameObject peyellow;
     public GameObject pewhite;
 
     public BallController Ball;
+
+    public Animator g1;
+    public Animator g2;
+    public Animator g3p1;
+    public Animator g3p2;
 
     //Declare private variables
     private List<GameObject> TilesToDestroy = new List<GameObject>();
@@ -37,7 +45,8 @@ public class GameControl : MonoBehaviour {
         StartingTile = Random.Range(0,NumOfTiles);
         ArrangeTile();
 
-        rend.sprite = planets[Random.Range(0, planets.Length)];        
+        rend.sprite = planets[Random.Range(0, planets.Length)];
+        rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];
     }
 
     public void ArrangeTile()
