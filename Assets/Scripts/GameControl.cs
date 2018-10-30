@@ -26,14 +26,8 @@ public class GameControl : MonoBehaviour {
         {
             Instance = this;
         }
-        ArrangeTile();
         CurrentWhiteTile = Random.Range(0, NumOfTiles);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-
+        ArrangeTile();
     }
 
     public void ArrangeTile()
@@ -80,8 +74,6 @@ public class GameControl : MonoBehaviour {
         Ball.Down = false;
         Ball.Up = true;
     }
-
-
 
     public int GetOrbitLevel()
     {

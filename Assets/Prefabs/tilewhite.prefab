@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 60363217366048790}
   m_Layer: 0
   m_Name: 1.3
-  m_TagString: WhiteTile
+  m_TagString: YellowTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

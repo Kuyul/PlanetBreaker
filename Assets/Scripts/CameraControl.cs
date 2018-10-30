@@ -33,8 +33,6 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         float[] orbitHeights = Gc.GetOrbitHeights();
-        //Get the current ball height
-        float ballHeight = Ball.localPosition.y;
         //Get the current orbit level
         CurrentLevel = Gc.GetOrbitLevel();
 
