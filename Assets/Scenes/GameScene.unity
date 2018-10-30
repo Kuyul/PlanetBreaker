@@ -141,8 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileWhite: {fileID: 1004727404216584, guid: 975a45735dc141144aec0c693a8b528c, type: 2}
-  TileRed: {fileID: 1347807383321162, guid: d9130bba3b573bc418f243386013f057, type: 2}
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
+  TileMin: 1
+  TileMax: 1
   NumOfTiles: 12
   Ball: {fileID: 727635541}
 --- !u!4 &75354859

@@ -6,7 +6,6 @@ TagManager:
   tags:
   - BlackTile
   - WhiteTile
-  - RedTile
   - YellowTile
   layers:
   - Default

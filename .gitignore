@@ -40,3 +40,4 @@ sysinfo.txt
 *.ide-wal
 *.lock
 *.ide-shm
+Assets/Scripts/GameControl.cs
