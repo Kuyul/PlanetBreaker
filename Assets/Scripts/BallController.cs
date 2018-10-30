@@ -30,12 +30,8 @@ public class BallController : MonoBehaviour
         UpVector = new Vector3(0, BounceSpeed, 0);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-
-        Vector3 NewPosition = transform.localPosition;
-
         //We can only click mousebutton when the ball isn't coming down
         if (Input.GetMouseButtonDown(0))
         {
@@ -47,6 +43,13 @@ public class BallController : MonoBehaviour
                 Clickable = false;
             }
         }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+
+        Vector3 NewPosition = transform.localPosition;
 
         //while "Down" ball speeds down.
         if (Down)
