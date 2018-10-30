@@ -140,10 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a2c79c1d17d6b34b808585f316eb17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileWhite: {fileID: 1004727404216584, guid: 975a45735dc141144aec0c693a8b528c, type: 2}
+  TileWhite: {fileID: 1200655182209124, guid: f507a20525394ba458e1ad7e88183ad7, type: 2}
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
-  TileMin: 1
-  TileMax: 1
+  TileMin: 2
+  TileMax: 4
   NumOfTiles: 12
   Ball: {fileID: 727635541}
 --- !u!4 &75354859

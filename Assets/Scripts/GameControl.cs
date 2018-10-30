@@ -27,13 +27,13 @@ public class GameControl : MonoBehaviour {
         {
             Instance = this;
         }
-        StartingTile = Random.Range(TileMin,TileMax);
+        StartingTile = Random.Range(0,NumOfTiles);
         ArrangeTile();
     }
 
     public void ArrangeTile()
     {
-        int temp = StartingTile + Random.Range(TileMin, TileMax);
+        int temp = StartingTile + Random.Range(TileMin, TileMax+1);
         StartingTile = temp % NumOfTiles;
 
         for (int i = 0; i < NumOfTiles; i++)

@@ -35,7 +35,6 @@ public class BallController : MonoBehaviour
         //We can only click mousebutton when the ball isn't coming down
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(Clickable);
             if (Clickable)
             {
                 Down = true;
@@ -83,17 +82,14 @@ public class BallController : MonoBehaviour
             if (collision.tag == "BlackTile")
             {
                 GameControl.Instance.Bounce();
-                SetOrbitLevel(0);
-                //Nothing happens
-            }
-            //Game Over if it hits a red tile
-            else if (collision.tag == "RedTile")
-            {
-                //TODO: implement gameover
+                // die
+
             }
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
             {
+                Debug.Log("white");
+                SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
                 GameControl.Instance.DestroyTiles();
                 GameControl.Instance.ArrangeTile();
@@ -101,6 +97,7 @@ public class BallController : MonoBehaviour
             //If it hits a yellow tile, break the tile and go up a level
             else if (collision.tag == "YellowTile")
             {
+                Debug.Log("yellow");
                 GameControl.Instance.Bounce();
                 GameControl.Instance.DestroyTiles();
                 GameControl.Instance.ArrangeTile();
@@ -108,7 +105,6 @@ public class BallController : MonoBehaviour
                 if (Lvl + 1 < OrbitHeights.Length)
                     SetOrbitLevel(Lvl + 1);
 
-                // perfect feedback?
             }
         }
     }
