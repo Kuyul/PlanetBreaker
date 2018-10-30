@@ -5,13 +5,14 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     //Declare Public variables
-    public float FallSpeed = 0.01f;
-    public float BounceSpeed = 0.2f;
+    public float FallSpeed;
+    public float BounceSpeed;
     public float[] OrbitHeights;
 
     public bool Down = false;
     public bool Up = false;
 
+    public PlayerController player;
     //Declare Private variables
 
     private bool Clickable = true;
@@ -81,7 +82,8 @@ public class BallController : MonoBehaviour
             //But the ball back into orbit if it hits a black tile
             if (collision.tag == "BlackTile")
             {
-                GameControl.Instance.Bounce();
+                GameControl.Instance.GameOver();
+                //GameControl.Instance.Bounce();
                 // die
 
             }
@@ -92,6 +94,7 @@ public class BallController : MonoBehaviour
                 GameControl.Instance.Bounce();
                 GameObject temp = Instantiate(GameControl.Instance.pewhite,transform.position,Quaternion.identity);
                 Destroy(temp, 2);
+                player.ResetAngularVelocity();
                 GameControl.Instance.DestroyTiles();
                 GameControl.Instance.ArrangeTile();
             }
@@ -101,6 +104,7 @@ public class BallController : MonoBehaviour
                 GameControl.Instance.Bounce();
                 GameObject temp = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
                 Destroy(temp, 2);
+                player.AddAngularVelocity();
                 GameControl.Instance.DestroyTiles();
                 GameControl.Instance.ArrangeTile();
 

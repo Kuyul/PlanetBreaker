@@ -5,35 +5,36 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //Declare Public Variables
-    public float AngularVelocity = 30.0f;
-    public float StopVelocity = 10.0f;
+    public float StartingAngularVelocity;
+    public float StopVelocity;
+    public float AVFallIncrement;
+    public float AVUpIncrement;
+    public Rigidbody2D rb;
 
     //Declare Private Variables
-    private Rigidbody2D rb;
-    private float SlowTime = 1.0f;
+
+    private float SlowTime;
 
 
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();
-        rb.angularVelocity = AngularVelocity;
+        SlowTime = 1f;
+        rb.angularVelocity = StartingAngularVelocity;
 	}
 
     private void Update()
     {
-        if (SlowTime > 0)
+        SlowTime -= Time.deltaTime;
+
+        if (SlowTime < 0)
         {
-            SlowTime -= Time.deltaTime;
-        }
-        else
-        {
-            rb.angularVelocity -= 1.0f;
+            rb.angularVelocity -= AVFallIncrement;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            SlowTime = 1.0f;
-            rb.angularVelocity = AngularVelocity;
+            // 5 seconds to stop timer while ball is falling so it doesnt gameover half way through projectile
+            SlowTime = 5;
         }
 
         if (rb.angularVelocity < StopVelocity)
@@ -41,4 +42,17 @@ public class PlayerController : MonoBehaviour {
             GameControl.Instance.GameOver();
         }
     }
+
+    public void ResetAngularVelocity()
+    {
+        SlowTime = 1f;
+        rb.angularVelocity = StartingAngularVelocity;
+    }
+
+    public void AddAngularVelocity()
+    {
+        SlowTime = 1f;
+        rb.angularVelocity += AVUpIncrement;
+    }
+
 }

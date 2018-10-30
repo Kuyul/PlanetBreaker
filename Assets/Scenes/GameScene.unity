@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileWhite:
-  - {fileID: 1541510487690716, guid: ec399031d56a02949a03707d770717f4, type: 2}
-  - {fileID: 1245727700626120, guid: 1f7e2087aeecf6e43a3d8d111210d37f, type: 2}
   - {fileID: 1163045944420960, guid: 975a45735dc141144aec0c693a8b528c, type: 2}
+  - {fileID: 1245727700626120, guid: 1f7e2087aeecf6e43a3d8d111210d37f, type: 2}
+  - {fileID: 1541510487690716, guid: ec399031d56a02949a03707d770717f4, type: 2}
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
   TileMin: 2
   TileMax: 4
@@ -669,11 +669,11 @@ MonoBehaviour:
   BounceSpeed: 0.4
   OrbitHeights:
   - 3
+  - 3.5
   - 4
-  - 5
-  - 6
   Down: 0
   Up: 0
+  player: {fileID: 1148926602}
 --- !u!58 &727635542
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -947,8 +947,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c824d6a10f39e4aa963beee655b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AngularVelocity: 150
-  StopVelocity: 30
+  StartingAngularVelocity: 100
+  StopVelocity: 0
+  AVFallIncrement: 0.3
+  AVUpIncrement: 20
+  rb: {fileID: 1148926601}
 --- !u!1 &2023594737
 GameObject:
   m_ObjectHideFlags: 0
