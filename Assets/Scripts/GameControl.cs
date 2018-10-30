@@ -19,6 +19,9 @@ public class GameControl : MonoBehaviour {
 
     public int NumOfTiles;
 
+    public GameObject peyellow;
+    public GameObject pewhite;
+
     public BallController Ball;
 
     //Declare private variables

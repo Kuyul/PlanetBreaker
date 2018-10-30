@@ -168,6 +168,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 36a1c6cde75b0b74dac09e56cb6c1485, type: 3}
   - {fileID: 21300000, guid: 2380948b92d167b4aa92d0f51e71bd16, type: 3}
   NumOfTiles: 12
+  peyellow: {fileID: 1752673918366762, guid: c57e68ab62cc486409da12b56eba2d46, type: 2}
+  pewhite: {fileID: 1778662853406760, guid: f66caac30d0218f488ea333a74dc66d9, type: 2}
   Ball: {fileID: 727635541}
 --- !u!4 &75354859
 Transform:
@@ -1016,7 +1018,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 297ff399ad9119b4886583f3afb10d35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

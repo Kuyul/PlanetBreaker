@@ -90,6 +90,8 @@ public class BallController : MonoBehaviour
             {
                 SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
+                GameObject temp = Instantiate(GameControl.Instance.pewhite,transform.position,Quaternion.identity);
+                Destroy(temp, 2);
                 GameControl.Instance.DestroyTiles();
                 GameControl.Instance.ArrangeTile();
             }
@@ -97,6 +99,8 @@ public class BallController : MonoBehaviour
             else if (collision.tag == "YellowTile")
             {
                 GameControl.Instance.Bounce();
+                GameObject temp = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
+                Destroy(temp, 2);
                 GameControl.Instance.DestroyTiles();
                 GameControl.Instance.ArrangeTile();
 
