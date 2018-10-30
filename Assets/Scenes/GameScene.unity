@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a2c79c1d17d6b34b808585f316eb17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlanetBase: {fileID: 2023594737}
   TileWhite:
   - {fileID: 1163045944420960, guid: 975a45735dc141144aec0c693a8b528c, type: 2}
   - {fileID: 1245727700626120, guid: 1f7e2087aeecf6e43a3d8d111210d37f, type: 2}
@@ -538,6 +539,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1328790020}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &355642789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355642791}
+  - component: {fileID: 355642790}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &355642790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 355642789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2967be6d9e17b3a49bd80c3875f43e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Planet: {fileID: 0}
+--- !u!4 &355642791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 355642789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0430834, y: -0.015675742, z: -8.885742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &464656905
 GameObject:
@@ -5919,7 +5961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingAngularVelocity: 120
   StopVelocity: 30
-  AVFallIncrement: 0
+  AVFallIncrement: 0.5
   AVUpIncrement: 20
   rb: {fileID: 1148926601}
 --- !u!1 &1311250368
@@ -10701,6 +10743,7 @@ GameObject:
   - component: {fileID: 2023594740}
   - component: {fileID: 2023594739}
   - component: {fileID: 2023594738}
+  - component: {fileID: 2023594741}
   m_Layer: 0
   m_Name: Planet base
   m_TagString: Untagged
@@ -10785,3 +10828,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &2023594741
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2023594737}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
