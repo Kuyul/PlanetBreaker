@@ -14,6 +14,9 @@ public class GameControl : MonoBehaviour {
     public int TileMin;
     public int TileMax;
 
+    public SpriteRenderer rend;
+    public Sprite[] planets;
+
     public int NumOfTiles;
 
     public BallController Ball;
@@ -30,6 +33,8 @@ public class GameControl : MonoBehaviour {
         }
         StartingTile = Random.Range(0,NumOfTiles);
         ArrangeTile();
+
+        rend.sprite = planets[Random.Range(0, planets.Length)];        
     }
 
     public void ArrangeTile()

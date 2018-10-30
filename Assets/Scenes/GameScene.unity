@@ -147,6 +147,26 @@ MonoBehaviour:
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
   TileMin: 2
   TileMax: 4
+  rend: {fileID: 2023594739}
+  planets:
+  - {fileID: 21300000, guid: 297ff399ad9119b4886583f3afb10d35, type: 3}
+  - {fileID: 21300000, guid: 17a9e1b3c62e83f44a387c4cd01b09a3, type: 3}
+  - {fileID: 21300000, guid: a5c4b434197e46a4690dff16f3b69f1a, type: 3}
+  - {fileID: 21300000, guid: ca44625f61264a145af23202152b79d6, type: 3}
+  - {fileID: 21300000, guid: d6611ef12a8f30d429fc9443fb583fc2, type: 3}
+  - {fileID: 21300000, guid: a110e85d19d65cc4685394d2a5250fbd, type: 3}
+  - {fileID: 21300000, guid: 0581ef6d182d392479291d048e288e50, type: 3}
+  - {fileID: 21300000, guid: af76b226ddafd5e4599aef64f3567644, type: 3}
+  - {fileID: 21300000, guid: b7f81a2b8a2eea24c99152d2e7c46657, type: 3}
+  - {fileID: 21300000, guid: 0a108dd6e4b6a2b4e8690a91d3430c8e, type: 3}
+  - {fileID: 21300000, guid: 32051f3663812f34388587a9c7dd5668, type: 3}
+  - {fileID: 21300000, guid: bcceab0b619c07443afaa1bac7dc4ba7, type: 3}
+  - {fileID: 21300000, guid: 92c71240eaf042445828427d7414e9eb, type: 3}
+  - {fileID: 21300000, guid: 18793204e98f66745be1d9df0a77df45, type: 3}
+  - {fileID: 21300000, guid: bfa6d052d7e18354e86d47544000574a, type: 3}
+  - {fileID: 21300000, guid: c3719b801dc08114da17069c67da06d8, type: 3}
+  - {fileID: 21300000, guid: 36a1c6cde75b0b74dac09e56cb6c1485, type: 3}
+  - {fileID: 21300000, guid: 2380948b92d167b4aa92d0f51e71bd16, type: 3}
   NumOfTiles: 12
   Ball: {fileID: 727635541}
 --- !u!4 &75354859
@@ -492,7 +512,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -997,12 +1017,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d47f2bdd91022674588ac265ae6cc956, type: 3}
-  m_Color: {r: 0.25943398, g: 0.33081573, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 297ff399ad9119b4886583f3afb10d35, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.72, y: 5.72}
+  m_Size: {x: 5.7, y: 5.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1017,7 +1037,7 @@ Transform:
   m_GameObject: {fileID: 2023594737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0272827, y: 1.0272827, z: 1.0272827}
+  m_LocalScale: {x: 0.6858418, y: 0.6858418, z: 0.6858418}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
