@@ -88,7 +88,6 @@ public class BallController : MonoBehaviour
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
             {
-                Debug.Log("white");
                 SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
                 GameControl.Instance.DestroyTiles();
@@ -97,7 +96,6 @@ public class BallController : MonoBehaviour
             //If it hits a yellow tile, break the tile and go up a level
             else if (collision.tag == "YellowTile")
             {
-                Debug.Log("yellow");
                 GameControl.Instance.Bounce();
                 GameControl.Instance.DestroyTiles();
                 GameControl.Instance.ArrangeTile();

@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
 
     //Declare public variables
 
-    public GameObject TileWhite;
+    public GameObject[] TileWhite;
     public GameObject TileBlack;
     public int TileMin;
     public int TileMax;
@@ -48,7 +48,7 @@ public class GameControl : MonoBehaviour {
             // instantiate white tiles
             else
             {
-                TilesToDestroy.Add(Instantiate(TileWhite, transform.position, Quaternion.identity));
+                TilesToDestroy.Add(Instantiate(TileWhite[Random.Range(0,TileWhite.Length)], transform.position, Quaternion.identity));
                 TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i);
             }
         }        
