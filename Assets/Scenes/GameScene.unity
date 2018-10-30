@@ -140,7 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a2c79c1d17d6b34b808585f316eb17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bc: {fileID: 0}
   TileWhite: {fileID: 1004727404216584, guid: 975a45735dc141144aec0c693a8b528c, type: 2}
   TileRed: {fileID: 1347807383321162, guid: d9130bba3b573bc418f243386013f057, type: 2}
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
@@ -157,7 +156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &107736227
 GameObject:
@@ -889,7 +888,7 @@ Transform:
   m_Children:
   - {fileID: 727635540}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1148926601
 Rigidbody2D:
@@ -922,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c824d6a10f39e4aa963beee655b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AngularVelocity: 100
+  AngularVelocity: 120
 --- !u!1 &2023594737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,5 +1015,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

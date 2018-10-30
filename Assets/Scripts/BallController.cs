@@ -37,9 +37,10 @@ public class BallController : MonoBehaviour
         Vector3 NewPosition = transform.localPosition;
 
         //We can only click mousebutton when the ball isn't coming down
-        if (Clickable)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButton(0))
+            Debug.Log(Clickable);
+            if (Clickable)
             {
                 Down = true;
                 Up = false;
@@ -102,7 +103,7 @@ public class BallController : MonoBehaviour
                 GameControl.Instance.ArrangeTile();
 
                 if (Lvl + 1 < OrbitHeights.Length)
-                SetOrbitLevel(Lvl + 1);
+                    SetOrbitLevel(Lvl + 1);
 
                 // perfect feedback?
             }
@@ -117,7 +118,7 @@ public class BallController : MonoBehaviour
     public void SetOrbitLevel(int level)
     {
         Lvl = level;
-        FallVector = new Vector3(0,FallSpeed,0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
+        FallVector = new Vector3(0, FallSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
         UpVector = new Vector3(0, BounceSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
     }
 }
