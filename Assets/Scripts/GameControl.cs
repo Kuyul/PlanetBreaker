@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameControl : MonoBehaviour {
+public class GameControl : MonoBehaviour
+{
 
     public static GameControl Instance;
 
     //Declare public variables
-
+    public Transform Planet;
     public GameObject[] TileWhite;
     public GameObject TileBlack;
-    public int TileMin;
-    public int TileMax;
 
     public SpriteRenderer rend;
     public Sprite[] planets;
@@ -20,6 +19,13 @@ public class GameControl : MonoBehaviour {
     public SpriteRenderer rendBackground;
     public Sprite[] backgrounds;
 
+    public int NumOfTiles;
+
+    //Effects
+    public GameObject peyellow;
+    public GameObject pewhite;
+    public GameObject pePlayerExplosion;
+    public GameObject player;
     public SpriteRenderer circleInner;
     public SpriteRenderer circleOuter;
     public SpriteRenderer ovalOuter;
@@ -29,14 +35,9 @@ public class GameControl : MonoBehaviour {
     public GameObject g0innertrail;
     public GameObject g0outertrail;
 
-    public int NumOfTiles;
-
-    public GameObject peyellow;
-    public GameObject pewhite;
-    public GameObject pePlayerExplosion;
-    public GameObject player;
-
+    //Declare Controllers
     public BallController Ball;
+    public LevelController Level;
 
     public Animator g1;
     public Animator g2;
@@ -45,50 +46,87 @@ public class GameControl : MonoBehaviour {
 
     //Declare private variables
     private List<GameObject> TilesToDestroy = new List<GameObject>();
-    private int StartingTile;
+    private int ActiveWhiteTiles;
 
     // Use this for initialization
-    void Start () {
-		if(Instance == null)
+    void Start()
+    {
+        if (Instance == null)
         {
             Instance = this;
         }
-        StartingTile = Random.Range(0,NumOfTiles);
+        //Set 1 white tile at the start
+        ActiveWhiteTiles = 1;
         ArrangeTile();
 
         rend.sprite = planets[Random.Range(0, planets.Length)];
-        rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];  
+        rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];
     }
 
     public void ArrangeTile()
     {
-        int temp = StartingTile + Random.Range(TileMin, TileMax+1);
-        StartingTile = temp % NumOfTiles;
+        List<int> WhiteTiles = new List<int>();
+
+        //Set a random location for each white tile
+        for (int i = 0; i < ActiveWhiteTiles; i++)
+        {
+            int index = Random.Range(0, NumOfTiles);
+            while (WhiteTiles.Contains(index))
+            {
+                index = Random.Range(0, NumOfTiles);
+            }
+            WhiteTiles.Add(index);
+        }
 
         for (int i = 0; i < NumOfTiles; i++)
         {
             // instantiate black tiles
-            if (i != StartingTile)
+            if (!WhiteTiles.Contains(i))
             {
-                TilesToDestroy.Add(Instantiate(TileBlack, transform.position, Quaternion.identity));
+                GameObject obj = Instantiate(TileBlack, transform.position, Quaternion.identity);
+                obj.transform.SetParent(Planet);
+                TilesToDestroy.Add(obj);
                 TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i);
             }
             // instantiate white tiles
             else
             {
-                TilesToDestroy.Add(Instantiate(TileWhite[Random.Range(0,TileWhite.Length)], transform.position, Quaternion.identity));
+                GameObject obj = Instantiate(TileWhite[Random.Range(0, TileWhite.Length)], transform.position, Quaternion.identity);
+                obj.transform.SetParent(Planet);
+                TilesToDestroy.Add(obj);
                 TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i);
             }
-        }        
+        }
     }
 
     public void DestroyTiles()
     {
         for (int i = 0; i < TilesToDestroy.Count; i++)
         {
-            Destroy(TilesToDestroy[i]);            
+            Destroy(TilesToDestroy[i]);
         }
         TilesToDestroy.Clear();
+    }
+
+    public void ConvertTile(GameObject obj)
+    {
+        GameObject parentobj = obj.transform.parent.gameObject;
+        ActiveWhiteTiles--;
+
+        if (ActiveWhiteTiles >= 1)
+        {
+            var newobj = Instantiate(TileBlack, transform.position, Quaternion.identity);
+            newobj.transform.eulerAngles = obj.transform.eulerAngles;
+            TilesToDestroy.Add(newobj);
+            TilesToDestroy.Remove(parentobj);
+            Destroy(parentobj);
+        }
+        else
+        {
+            DestroyTiles();
+            ActiveWhiteTiles = Random.Range(1, 3);
+            ArrangeTile();
+        }
     }
 
     public void Bounce()
@@ -116,5 +154,15 @@ public class GameControl : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(0);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ReduceHealth(int reduce)
+    {
+        Level.ReduceHealth(reduce);
     }
 }

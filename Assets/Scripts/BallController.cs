@@ -113,14 +113,15 @@ public class BallController : MonoBehaviour
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
             {
+                GameControl.Instance.ReduceHealth(Lvl + 1); //Reduce planet health
                 SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
                 GameObject temp = Instantiate(GameControl.Instance.pewhite, transform.position, Quaternion.identity);
                 Destroy(temp, 2);
                 player.ResetAngularVelocity();
-                GameControl.Instance.DestroyTiles();
-                GameControl.Instance.ArrangeTile();
+                GameControl.Instance.ConvertTile(collision.gameObject);
 
+                //This if statement will always be true
                 if (Lvl == 0)
                 {
                     GameControl.Instance.g1.SetBool("fadein", false);
@@ -132,12 +133,12 @@ public class BallController : MonoBehaviour
             //If it hits a yellow tile, break the tile and go up a level
             else if (collision.tag == "YellowTile")
             {
+                GameControl.Instance.ReduceHealth(Lvl + 1); //Reduce planet health
                 GameControl.Instance.Bounce();
                 GameObject temp = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
                 Destroy(temp, 2);
                 player.AddAngularVelocity();
-                GameControl.Instance.DestroyTiles();
-                GameControl.Instance.ArrangeTile();
+                GameControl.Instance.ConvertTile(collision.gameObject);
 
                 if (Lvl + 1 < OrbitHeights.Length)
                 {
