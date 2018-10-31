@@ -27,6 +27,13 @@ public class GameControl : MonoBehaviour
 
     public int NumOfTiles;
     public bool startgaming;
+    
+    public AudioSource alienhit;
+    public AudioSource buttonpop;
+    public AudioSource death;
+    public AudioSource[] hits;
+    public AudioSource ingame;
+    public AudioSource intro;
 
     //Effects
     public GameObject peyellow;
@@ -45,6 +52,8 @@ public class GameControl : MonoBehaviour
     public GameObject PanelPause;
     //Jewel
     public Text JewelText;
+    public Text LevelText;
+    public Text JewelTextMenu;
 
     //Declare Controllers
     public BallController Ball;
@@ -76,6 +85,9 @@ public class GameControl : MonoBehaviour
         rend.sprite = planets[Random.Range(0, planets.Length)];
         rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];
         JewelText.text = "" + GetJewelCount();
+
+        JewelTextMenu.text = PlayerPrefs.GetInt("Jewels", 0).ToString();
+        LevelText.text = PlayerPrefs.GetInt("Level", 0).ToString();
     }
 
     private void Update()
@@ -181,6 +193,8 @@ public class GameControl : MonoBehaviour
 
     public void GameOver()
     {
+        death.Play();
+        ingame.Stop();
         StartCoroutine("Timer");
     }
 
@@ -206,6 +220,7 @@ public class GameControl : MonoBehaviour
 
     public void PauseGame()
     {
+        buttonpop.Play();
         Time.timeScale = 0;
         PanelPause.SetActive(true);
     }
@@ -236,10 +251,36 @@ public class GameControl : MonoBehaviour
         ball.SetBool("startgame", true);
         Menu.SetActive(false);
         InGame.SetActive(true);
+        intro.Stop();
+        ingame.Play();
     }
 
     public void SpawnAlien()
     {
         Level.SpawnAliens();
+    }
+
+    public void MuteAll()
+    {
+        alienhit.volume = 0;
+        buttonpop.volume = 0;
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].volume = 0;
+        }
+        ingame.volume = 0;
+        intro.volume = 0;
+    }
+
+    public void UnMuteAll()
+    {
+        alienhit.volume = 1;
+        buttonpop.volume = 1;
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].volume = 1;
+        }
+        ingame.volume = 1;
+        intro.volume = 1;
     }
 }
