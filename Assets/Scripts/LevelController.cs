@@ -43,22 +43,4 @@ public class LevelController : MonoBehaviour {
             GameControl.Instance.NextLevel();
         }
     }
-
-    public void AlienEffect(GameObject obj)
-    {
-        if(obj.tag == "Alien1")
-        {
-            AlienEffect1();
-        }//TODO: Include more alien effects
-    }
-
-    public void AlienEffect1()
-    {
-
-    }
-
-    public void AlienEffect2()
-    {
-
-    }
 }

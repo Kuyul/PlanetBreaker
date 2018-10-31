@@ -118,6 +118,7 @@ public class GameControl : MonoBehaviour
         if (ActiveWhiteTiles >= 1)
         {
             var newobj = Instantiate(TileBlack, transform.position, Quaternion.identity);
+            newobj.transform.SetParent(Planet);
             newobj.transform.eulerAngles = obj.transform.eulerAngles;
             TilesToDestroy.Add(newobj);
             TilesToDestroy.Remove(parentobj);
@@ -168,11 +169,6 @@ public class GameControl : MonoBehaviour
     public void ReduceHealth(int reduce)
     {
         Level.ReduceHealth(reduce);
-    }
-
-    public void HitAlien(GameObject obj)
-    {
-        Level.AlienEffect(obj);
     }
 
     public void PauseGame()

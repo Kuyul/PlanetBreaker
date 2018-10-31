@@ -105,7 +105,6 @@ public class BallController : MonoBehaviour
     {
         if (collision.tag == "Alien1")
         {
-            GameControl.Instance.HitAlien(collision.gameObject);
             GameControl.Instance.Bounce();
             SetOrbitLevel(3);
             collision.gameObject.SetActive(false);
