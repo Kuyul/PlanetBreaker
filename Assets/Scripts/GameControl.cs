@@ -168,6 +168,7 @@ public class GameControl : MonoBehaviour
 
     public void NextLevel()
     {
+        Level.IncrementLevel();
         AddJewel(10);
         SceneManager.LoadScene(0);
     }
