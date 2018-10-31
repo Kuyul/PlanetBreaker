@@ -56,6 +56,20 @@ public class BallController : MonoBehaviour
             GameControl.Instance.circleOuter.color = new Color32(214, 254, 254, 109);
             GameControl.Instance.ovalOuter.color = new Color32(1, 87, 255, 255);
         }
+
+        if (Lvl == 1)
+        {
+            GameControl.Instance.g1.SetBool("fadein", true);
+        }
+        if (Lvl > 1)
+        {
+            GameControl.Instance.g2.SetBool("fadein", true);
+        }
+        if (Lvl > 2)
+        {
+            GameControl.Instance.g3p1.SetBool("fadein", true);
+            GameControl.Instance.g3p2.SetBool("fadein", true);
+        }
     }
 
     // Update is called once per frame
@@ -141,19 +155,7 @@ public class BallController : MonoBehaviour
                 {
                     SetOrbitLevel(Lvl + 1);
                 }
-                if (Lvl == 1)
-                {
-                    GameControl.Instance.g1.SetBool("fadein", true);
-                }
-                if (Lvl == 2)
-                {
-                    GameControl.Instance.g2.SetBool("fadein", true);
-                }
-                if (Lvl == 3)
-                {
-                    GameControl.Instance.g3p1.SetBool("fadein", true);
-                    GameControl.Instance.g3p2.SetBool("fadein", true);
-                }
+
             }
         }
     }
