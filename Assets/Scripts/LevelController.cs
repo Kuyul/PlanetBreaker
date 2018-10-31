@@ -102,10 +102,14 @@ public class LevelController : MonoBehaviour {
         //default chance 10%
         if(i <= AlienChance)
         {
-            int j = Random.Range(0, Aliens.Count);
-            GameObject obj = Instantiate(Aliens[j]);
-            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            rb.angularVelocity = AlienAngularVelocity;
+            if (Aliens.Count > 0)
+            {
+                int j = Random.Range(0, Aliens.Count);
+                GameObject obj = Instantiate(Aliens[j]);
+                Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+                float AlienSpeed = Random.Range(-30.0f, 30.0f);
+                rb.angularVelocity = AlienSpeed;
+            }
         }
     }
 }
