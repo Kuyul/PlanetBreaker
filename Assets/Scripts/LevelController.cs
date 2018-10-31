@@ -43,6 +43,7 @@ public class LevelController : MonoBehaviour {
         //Planet starts to spin from stage 26 onwards
         if(level >= 26)
         {
+            planetSpinSpeed = Random.Range(-30.0f, 30.0f);
             PlanetSpin = planetSpinSpeed;
         }
 

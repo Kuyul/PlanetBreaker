@@ -169,7 +169,7 @@ public class GameControl : MonoBehaviour
         else
         {
             DestroyTiles();
-            ActiveWhiteTiles = Random.Range(1, 4);
+            ActiveWhiteTiles = Random.Range(1, 3);
             ArrangeTile();
         }
     }
