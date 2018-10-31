@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class GameControl : MonoBehaviour
     public GameObject g0outertrail;
 
     public GameObject PanelPause;
+    //Jewel
+    public Text JewelText;
 
     //Declare Controllers
     public BallController Ball;
@@ -63,6 +66,7 @@ public class GameControl : MonoBehaviour
 
         rend.sprite = planets[Random.Range(0, planets.Length)];
         rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];
+        JewelText.text = "" + GetJewelCount();
     }
 
     public void ArrangeTile()
@@ -115,6 +119,7 @@ public class GameControl : MonoBehaviour
         GameObject parentobj = obj.transform.parent.gameObject;
         ActiveWhiteTiles--;
 
+        //If there are other active white tiles, destroy the one hit by the ball and leave fill the space with a black tile.
         if (ActiveWhiteTiles >= 1)
         {
             var newobj = Instantiate(TileBlack, transform.position, Quaternion.identity);
@@ -124,6 +129,7 @@ public class GameControl : MonoBehaviour
             TilesToDestroy.Remove(parentobj);
             Destroy(parentobj);
         }
+        //If there are no more active white tiles, re-generate them
         else
         {
             DestroyTiles();
@@ -132,6 +138,7 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    //Not sure why bounce would be in Gamecontrol
     public void Bounce()
     {
         Ball.Down = false;
@@ -161,6 +168,7 @@ public class GameControl : MonoBehaviour
 
     public void NextLevel()
     {
+        AddJewel(10);
         SceneManager.LoadScene(0);
     }
 
@@ -181,5 +189,19 @@ public class GameControl : MonoBehaviour
     {
         Time.timeScale = 1;
         PanelPause.SetActive(false);
+    }
+
+    //Jewel functions
+    public int GetJewelCount()
+    {
+        return PlayerPrefs.GetInt("Jewels", 0);
+    }
+
+    public void AddJewel(int add)
+    {
+        int count = GetJewelCount();
+        int newCount = count + add;
+        PlayerPrefs.SetInt("Jewels", newCount);
+        JewelText.text = "" + newCount;
     }
 }

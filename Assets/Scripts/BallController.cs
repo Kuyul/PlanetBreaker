@@ -14,11 +14,13 @@ public class BallController : MonoBehaviour
     public bool Clickable = true;
 
     public PlayerController player;
+    public GameObject Shield;
 
     //Declare Private variables
     private int Lvl;
     private Vector3 FallVector;
     private Vector3 UpVector;
+    private bool ShieldActive = false;
 
     // Use this for initialization
     void Start()
@@ -107,6 +109,15 @@ public class BallController : MonoBehaviour
         {
             GameControl.Instance.Bounce();
             SetOrbitLevel(3);
+            GameControl.Instance.AddJewel(5);
+            collision.gameObject.SetActive(false);
+        }
+        if(collision.tag == "Alien2")
+        {
+            GameControl.Instance.Bounce();
+            ShieldActive = true;
+            Shield.SetActive(true);
+            GameControl.Instance.AddJewel(5);
             collision.gameObject.SetActive(false);
         }
 
@@ -116,9 +127,18 @@ public class BallController : MonoBehaviour
             //But the ball back into orbit if it hits a black tile
             if (collision.tag == "BlackTile")
             {
-                GameControl.Instance.player.SetActive(false);
-                Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
-                GameControl.Instance.GameOver();
+                if (ShieldActive)
+                {
+                    ShieldActive = false;
+                    Shield.SetActive(false);
+                    GameControl.Instance.Bounce();
+                }
+                else
+                {
+                    GameControl.Instance.player.SetActive(false);
+                    Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
+                    GameControl.Instance.GameOver();
+                }
             }
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
