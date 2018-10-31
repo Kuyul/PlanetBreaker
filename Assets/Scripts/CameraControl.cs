@@ -22,7 +22,7 @@ public class CameraControl : MonoBehaviour
     void Start()
     {
         Cam = Camera.main;
-        CamOrigSize = Cam.orthographicSize;
+        CamOrigSize = 6.0f;
         Gc = GameControl.Instance;
 
         //Initialise Previous level

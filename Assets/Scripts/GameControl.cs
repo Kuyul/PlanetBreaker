@@ -81,12 +81,15 @@ public class GameControl : MonoBehaviour
     private void Update()
     {
         // check if animation has finished playing
-        //keeps putting error on console. how to remove?????????
-        if (ball.GetCurrentAnimatorStateInfo(0).IsName("BallMove") && ball.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-        {            
-            AnimBall.SetActive(false);
-            Player.SetActive(true);
-            Destroy(CameraControl.GetComponent<Animator>());
+        //keeps putting error on console. how to remove????????? - A simple If statement does it ;) Kyle
+        if (AnimBall.activeInHierarchy)
+        {
+            if (ball.GetCurrentAnimatorStateInfo(0).IsName("BallMove") && ball.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+            {
+                AnimBall.SetActive(false);
+                Player.SetActive(true);
+                Destroy(CameraControl.GetComponent<Animator>());
+            }
         }
     }
 
@@ -154,7 +157,7 @@ public class GameControl : MonoBehaviour
         else
         {
             DestroyTiles();
-            ActiveWhiteTiles = Random.Range(1, 3);
+            ActiveWhiteTiles = Random.Range(1, 4);
             ArrangeTile();
         }
     }

@@ -7,7 +7,8 @@ public class LevelController : MonoBehaviour {
 
     //Declare public variables
     public Rigidbody2D Planet;
-    public Text HealthText;
+    public Slider HealthBar;
+    public Text Level;
     public GameObject ShieldAlien;
     public GameObject PowerAlien;
     public float AlienAngularVelocity;
@@ -24,7 +25,12 @@ public class LevelController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         int level = GetLevel();
+        //Set health equal to level
         Health = level;
+
+        //Set Level Text
+        Level.text = "" + level;
+
         float PlanetSpin = 0;
         if (level >= 21)
         {
@@ -41,6 +47,10 @@ public class LevelController : MonoBehaviour {
             ShieldAlienbool = true;
         }
 
+        if (level >= 41) {
+            PlanetSpin = planetSpinSpeed * 2;
+        }
+
         GenerateLevel(PlanetSpin, Health, SpawnAlien);
     }
 
@@ -48,7 +58,8 @@ public class LevelController : MonoBehaviour {
     {
         Planet.angularVelocity = planetSpin;
         HealthLeft = health;
-        HealthText.text = "HEALTH " + HealthLeft;
+        HealthBar.maxValue = health;
+        HealthBar.value = health;
         if (PowerAlienbool)
         {
             GameObject obj = Instantiate(PowerAlien);
@@ -68,7 +79,7 @@ public class LevelController : MonoBehaviour {
     public void ReduceHealth(int reduce)
     {
         HealthLeft -= reduce;
-        HealthText.text = "HEALTH " + HealthLeft;
+        HealthBar.value = HealthLeft;
 
         if(HealthLeft <= 0)
         {
