@@ -151,6 +151,7 @@ public class BallController : MonoBehaviour
                 Destroy(temp, 2);
                 player.ResetAngularVelocity();
                 GameControl.Instance.ConvertTile(collision.gameObject);
+                GameControl.Instance.SpawnAlien();
 
                 //This if statement will always be true
                 if (Lvl == 0)
@@ -170,6 +171,7 @@ public class BallController : MonoBehaviour
                 Destroy(temp, 2);
                 player.AddAngularVelocity();
                 GameControl.Instance.ConvertTile(collision.gameObject);
+                GameControl.Instance.SpawnAlien();
 
                 if (Lvl + 1 < OrbitHeights.Length)
                 {

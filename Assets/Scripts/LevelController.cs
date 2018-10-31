@@ -12,6 +12,7 @@ public class LevelController : MonoBehaviour {
     public GameObject ShieldAlien;
     public GameObject PowerAlien;
     public float AlienAngularVelocity;
+    public int AlienChance = 10;
 
     public float planetSpinSpeed; //TODO: remove these later as we won't need it
     public int Health = 10;
@@ -21,6 +22,7 @@ public class LevelController : MonoBehaviour {
     private int HealthLeft = 10;
     private bool ShieldAlienbool = false;
     private bool PowerAlienbool = false;
+    private List<GameObject> Aliens = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
@@ -32,28 +34,28 @@ public class LevelController : MonoBehaviour {
         Level.text = "" + level;
 
         float PlanetSpin = 0;
+        //Power Aliens can appear from stage 21 onwards
         if (level >= 21)
         {
             PowerAlienbool = true;
         }
 
+        //Planet starts to spin from stage 26 onwards
         if(level >= 26)
         {
             PlanetSpin = planetSpinSpeed;
         }
 
+        //Shield aliens can appear from stage 31 onwards
         if(level >= 31)
         {
             ShieldAlienbool = true;
         }
 
-        if (level >= 41) {
-            PlanetSpin = planetSpinSpeed * 2;
-        }
-
         GenerateLevel(PlanetSpin, Health, SpawnAlien);
     }
 
+    //This method is called at the start of every level to configure level properties
     public void GenerateLevel(float planetSpin, int health, int alienCount)
     {
         Planet.angularVelocity = planetSpin;
@@ -62,18 +64,13 @@ public class LevelController : MonoBehaviour {
         HealthBar.value = health;
         if (PowerAlienbool)
         {
-            GameObject obj = Instantiate(PowerAlien);
-            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            rb.angularVelocity = AlienAngularVelocity;
+            Aliens.Add(PowerAlien);
         }
 
         if (ShieldAlienbool)
         {
-            GameObject obj = Instantiate(ShieldAlien);
-            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            rb.angularVelocity = AlienAngularVelocity;
+            Aliens.Add(ShieldAlien);
         }
-        
     }
 
     public void ReduceHealth(int reduce)
@@ -96,5 +93,18 @@ public class LevelController : MonoBehaviour {
     {
         int currentLevel = GetLevel();
         PlayerPrefs.SetInt("Level", currentLevel + 1);
+    }
+
+    public void SpawnAliens()
+    {
+        int i = Random.Range(1,100);
+        //default chance 10%
+        if(i <= AlienChance)
+        {
+            int j = Random.Range(0, Aliens.Count);
+            GameObject obj = Instantiate(Aliens[j]);
+            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            rb.angularVelocity = AlienAngularVelocity;
+        }
     }
 }

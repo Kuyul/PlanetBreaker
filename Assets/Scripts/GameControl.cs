@@ -237,4 +237,9 @@ public class GameControl : MonoBehaviour
         Menu.SetActive(false);
         InGame.SetActive(true);
     }
+
+    public void SpawnAlien()
+    {
+        Level.SpawnAliens();
+    }
 }
