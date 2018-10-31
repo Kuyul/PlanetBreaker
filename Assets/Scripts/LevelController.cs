@@ -27,7 +27,7 @@ public class LevelController : MonoBehaviour {
     {
         Planet.angularVelocity = planetSpin;
         HealthLeft = health;
-        HealthText.text = "Health " + HealthLeft;
+        HealthText.text = "HEALTH " + HealthLeft;
         GameObject obj = Instantiate(AlienContainer[Random.Range(0, AlienContainer.Length)]);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         rb.angularVelocity = AlienAngularVelocity;
@@ -36,7 +36,7 @@ public class LevelController : MonoBehaviour {
     public void ReduceHealth(int reduce)
     {
         HealthLeft -= reduce;
-        HealthText.text = "Health " + HealthLeft;
+        HealthText.text = "HEALTH " + HealthLeft;
 
         if(HealthLeft <= 0)
         {

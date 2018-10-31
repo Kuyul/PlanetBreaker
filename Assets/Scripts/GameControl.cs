@@ -35,6 +35,8 @@ public class GameControl : MonoBehaviour
     public GameObject g0innertrail;
     public GameObject g0outertrail;
 
+    public GameObject PanelPause;
+
     //Declare Controllers
     public BallController Ball;
     public LevelController Level;
@@ -171,5 +173,17 @@ public class GameControl : MonoBehaviour
     public void HitAlien(GameObject obj)
     {
         Level.AlienEffect(obj);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        PanelPause.SetActive(true);
+    }
+
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1;
+        PanelPause.SetActive(false);
     }
 }

@@ -11,11 +11,11 @@ public class BallController : MonoBehaviour
 
     public bool Down = false;
     public bool Up = false;
+    public bool Clickable = true;
 
     public PlayerController player;
-    //Declare Private variables
 
-    private bool Clickable = true;
+    //Declare Private variables
     private int Lvl;
     private Vector3 FallVector;
     private Vector3 UpVector;
@@ -33,17 +33,6 @@ public class BallController : MonoBehaviour
 
     private void Update()
     {
-        //We can only click mousebutton when the ball isn't coming down
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Clickable)
-            {
-                Down = true;
-                Up = false;
-                Clickable = false;
-            }
-        }
-
         // changing color of player and trailer according to current orbit
         if (Lvl == 0)
         {
