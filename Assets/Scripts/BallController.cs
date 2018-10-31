@@ -30,7 +30,7 @@ public class BallController : MonoBehaviour
         transform.localPosition = new Vector3(0, OrbitHeights[Lvl], 0); //Set the initial player position to the height of the first orbit layer
 
         FallVector = new Vector3(0, FallSpeed, 0);
-        UpVector = new Vector3(0, BounceSpeed, 0);
+        UpVector = new Vector3(0, BounceSpeed, 0);        
     }
 
     private void Update()
@@ -77,30 +77,31 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+      
+            Vector3 NewPosition = transform.localPosition;
 
-        Vector3 NewPosition = transform.localPosition;
+            //while "Down" ball speeds down.
+            if (Down)
+            {
+                NewPosition -= FallVector;
+            }
 
-        //while "Down" ball speeds down.
-        if (Down)
-        {
-            NewPosition -= FallVector;
-        }
+            //while "Up" the ball speeds up.
+            if (Up)
+            {
+                NewPosition += UpVector;
+            }
 
-        //while "Up" the ball speeds up.
-        if (Up)
-        {
-            NewPosition += UpVector;
-        }
+            //At any time if the position of the ball is higher than the orbit, adjust to the current orbit's height
+            if (NewPosition.y >= OrbitHeights[Lvl])
+            {
+                NewPosition = new Vector3(0, OrbitHeights[Lvl], 0);
+                Up = false;
+                Clickable = true;
+            }
 
-        //At any time if the position of the ball is higher than the orbit, adjust to the current orbit's height
-        if (NewPosition.y >= OrbitHeights[Lvl])
-        {
-            NewPosition = new Vector3(0, OrbitHeights[Lvl], 0);
-            Up = false;
-            Clickable = true;
-        }
-
-        transform.localPosition = NewPosition;
+            transform.localPosition = NewPosition;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -135,7 +136,7 @@ public class BallController : MonoBehaviour
                 }
                 else
                 {
-                    GameControl.Instance.player.SetActive(false);
+                    GameControl.Instance.Player.SetActive(false);
                     Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
                     GameControl.Instance.GameOver();
                 }

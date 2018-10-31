@@ -9,11 +9,13 @@ public class Touch : MonoBehaviour , IPointerDownHandler{
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (ball.Clickable)
-        {
-            ball.Down = true;
-            ball.Up = false;
-            ball.Clickable = false;
-        }
+     
+            if (ball.Clickable)
+            {
+                ball.Down = true;
+                ball.Up = false;
+                ball.Clickable = false;
+            }
+        
     }
 }

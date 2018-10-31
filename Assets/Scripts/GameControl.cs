@@ -14,6 +14,11 @@ public class GameControl : MonoBehaviour
     public GameObject[] TileWhite;
     public GameObject TileBlack;
 
+    public GameObject Menu;
+    public GameObject InGame;
+    public GameObject AnimBall;
+    public GameObject Player;
+
     public SpriteRenderer rend;
     public Sprite[] planets;
 
@@ -21,12 +26,13 @@ public class GameControl : MonoBehaviour
     public Sprite[] backgrounds;
 
     public int NumOfTiles;
+    public bool startgaming;
 
     //Effects
     public GameObject peyellow;
     public GameObject pewhite;
     public GameObject pePlayerExplosion;
-    public GameObject player;
+    
     public SpriteRenderer circleInner;
     public SpriteRenderer circleOuter;
     public SpriteRenderer ovalOuter;
@@ -43,11 +49,14 @@ public class GameControl : MonoBehaviour
     //Declare Controllers
     public BallController Ball;
     public LevelController Level;
+    public CameraControl CameraControl;
 
     public Animator g1;
     public Animator g2;
     public Animator g3p1;
     public Animator g3p2;
+    public Animator ball;
+    public Animator cam;
 
     //Declare private variables
     private List<GameObject> TilesToDestroy = new List<GameObject>();
@@ -67,6 +76,18 @@ public class GameControl : MonoBehaviour
         rend.sprite = planets[Random.Range(0, planets.Length)];
         rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];
         JewelText.text = "" + GetJewelCount();
+    }
+
+    private void Update()
+    {
+        // check if animation has finished playing
+        //keeps putting error on console. how to remove?????????
+        if (ball.GetCurrentAnimatorStateInfo(0).IsName("BallMove") && ball.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        {            
+            AnimBall.SetActive(false);
+            Player.SetActive(true);
+            Destroy(CameraControl.GetComponent<Animator>());
+        }
     }
 
     public void ArrangeTile()
@@ -204,5 +225,13 @@ public class GameControl : MonoBehaviour
         int newCount = count + add;
         PlayerPrefs.SetInt("Jewels", newCount);
         JewelText.text = "" + newCount;
+    }
+
+    public void StartGame()
+    {
+        cam.SetBool("startgame", true);
+        ball.SetBool("startgame", true);
+        Menu.SetActive(false);
+        InGame.SetActive(true);
     }
 }

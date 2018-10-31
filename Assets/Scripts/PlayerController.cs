@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         SlowTime = 1f;
-        rb.angularVelocity = StartingAngularVelocity;
+        rb.angularVelocity= StartingAngularVelocity;
 	}
 
     private void Update()
