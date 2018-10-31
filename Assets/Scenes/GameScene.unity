@@ -140,7 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a2c79c1d17d6b34b808585f316eb17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlanetBase: {fileID: 2023594737}
   TileWhite:
   - {fileID: 1163045944420960, guid: 975a45735dc141144aec0c693a8b528c, type: 2}
   - {fileID: 1245727700626120, guid: 1f7e2087aeecf6e43a3d8d111210d37f, type: 2}
@@ -175,9 +174,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1bd2f9674acfe014a82736e3c3ecf330, type: 3}
   - {fileID: 21300000, guid: 18c927d0e2cd50445b39a54ee4eff28e, type: 3}
   - {fileID: 21300000, guid: eed8d4ffbadd2164181e4f2d97c9e43b, type: 3}
+  circleInner: {fileID: 622455190}
+  circleOuter: {fileID: 945303279}
+  ovalOuter: {fileID: 1045187649}
+  g3innertrail: {fileID: 179332126}
+  g3outertrail: {fileID: 107736227}
+  g0innertrail: {fileID: 307281375}
+  g0outertrail: {fileID: 908188135}
   NumOfTiles: 12
   peyellow: {fileID: 1752673918366762, guid: c57e68ab62cc486409da12b56eba2d46, type: 2}
   pewhite: {fileID: 1778662853406760, guid: f66caac30d0218f488ea333a74dc66d9, type: 2}
+  pePlayerExplosion: {fileID: 1709921138867090, guid: 60d52902c3b8cab40ae643bfa0a5c56a,
+    type: 2}
+  player: {fileID: 727635539}
   Ball: {fileID: 727635541}
   g1: {fileID: 1904447146}
   g2: {fileID: 543399513}
@@ -206,12 +215,12 @@ GameObject:
   - component: {fileID: 107736228}
   - component: {fileID: 107736229}
   m_Layer: 0
-  m_Name: Trailred
+  m_Name: g3TrailOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &107736228
 Transform:
   m_ObjectHideFlags: 0
@@ -223,7 +232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 727635540}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &107736229
 TrailRenderer:
@@ -300,8 +309,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.48627454, b: 0.44705886, a: 1}
-      key1: {r: 1, g: 0.46274513, b: 0.46274513, a: 1}
+      key0: {r: 0.003921569, g: 0.34117648, b: 1, a: 1}
+      key1: {r: 0.003921569, g: 0.34117648, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -345,12 +354,12 @@ GameObject:
   - component: {fileID: 179332127}
   - component: {fileID: 179332128}
   m_Layer: 0
-  m_Name: Trailyellow
+  m_Name: g3TrailInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &179332127
 Transform:
   m_ObjectHideFlags: 0
@@ -362,7 +371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 727635540}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &179332128
 TrailRenderer:
@@ -430,8 +439,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9490197, g: 0.8431373, b: 0.54901963, a: 1}
-      key1: {r: 0.9490197, g: 0.8431373, b: 0.54901963, a: 1}
+      key0: {r: 0.83921576, g: 0.9960785, b: 0.9960785, a: 1}
+      key1: {r: 0.83921576, g: 0.9960785, b: 0.9960785, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -540,6 +549,136 @@ Transform:
   m_Father: {fileID: 1328790020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &307281375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307281376}
+  - component: {fileID: 307281377}
+  m_Layer: 0
+  m_Name: g0TrailInner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &307281376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 307281375}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 727635540}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &307281377
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 307281375}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -3
+  m_Time: 0.3
+  m_Parameters:
+    serializedVersion: 2
+    widthMultiplier: 0.22
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: -1
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.9490197, g: 0.8431373, b: 0.54901963, a: 1}
+      key1: {r: 0.9490197, g: 0.8431373, b: 0.54901963, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1 &355642789
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Planet: {fileID: 0}
+  planetSpinSpeed: 0
 --- !u!4 &355642791
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +990,7 @@ GameObject:
   - component: {fileID: 622455189}
   - component: {fileID: 622455190}
   m_Layer: 0
-  m_Name: circle orange
+  m_Name: circleInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1020,9 +1160,11 @@ Transform:
   m_Children:
   - {fileID: 622455189}
   - {fileID: 945303278}
+  - {fileID: 1045187648}
   - {fileID: 179332127}
   - {fileID: 107736228}
-  - {fileID: 1045187648}
+  - {fileID: 307281376}
+  - {fileID: 908188136}
   m_Father: {fileID: 1148926600}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1108,6 +1250,145 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &908188135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 908188136}
+  - component: {fileID: 908188137}
+  m_Layer: 0
+  m_Name: g0TrailOuter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &908188136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 908188135}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 727635540}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &908188137
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 908188135}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -4
+  m_Time: 0.4
+  m_Parameters:
+    serializedVersion: 2
+    widthMultiplier: 0.5
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.15454865
+        inSlope: 0
+        outSlope: 11.050315
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.07650925
+        value: 1
+        inSlope: 1.7829735
+        outSlope: -1.0828478
+        tangentMode: 65
+        weightedMode: 1
+        inWeight: 1
+        outWeight: 0.42253757
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1.0828478
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 0.36862746, b: 0.46274513, a: 1}
+      key1: {r: 1, g: 0.36862746, b: 0.46274513, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1 &911045430
 GameObject:
   m_ObjectHideFlags: 0
@@ -5757,7 +6038,7 @@ GameObject:
   - component: {fileID: 945303278}
   - component: {fileID: 945303279}
   m_Layer: 0
-  m_Name: circle red
+  m_Name: circleOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5832,7 +6113,7 @@ GameObject:
   - component: {fileID: 1045187648}
   - component: {fileID: 1045187649}
   m_Layer: 0
-  m_Name: oval pink
+  m_Name: ovalOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5849,7 +6130,7 @@ Transform:
   m_LocalScale: {x: 0.88798094, y: 0.62355494, z: 0.657866}
   m_Children: []
   m_Father: {fileID: 727635540}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1045187649
 SpriteRenderer:
@@ -5961,7 +6242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingAngularVelocity: 120
   StopVelocity: 30
-  AVFallIncrement: 0.5
+  AVFallIncrement: 0
   AVUpIncrement: 20
   rb: {fileID: 1148926601}
 --- !u!1 &1311250368

@@ -43,6 +43,30 @@ public class BallController : MonoBehaviour
                 Clickable = false;
             }
         }
+
+        // changing color of player and trailer according to current orbit
+        if (Lvl == 0)
+        {
+            GameControl.Instance.g0innertrail.SetActive(true);
+            GameControl.Instance.g0outertrail.SetActive(true);
+            GameControl.Instance.g3innertrail.SetActive(false);
+            GameControl.Instance.g3outertrail.SetActive(false);
+
+            GameControl.Instance.circleInner.color = new Color32(255,122,61, 255);
+            GameControl.Instance.circleOuter.color = new Color32(168,4,17, 109);
+            GameControl.Instance.ovalOuter.color = new Color32(255, 118, 118, 255);
+        }
+        if (Lvl == 3)
+        {
+            GameControl.Instance.g0innertrail.SetActive(false);
+            GameControl.Instance.g0outertrail.SetActive(false);
+            GameControl.Instance.g3innertrail.SetActive(true);
+            GameControl.Instance.g3outertrail.SetActive(true);
+
+            GameControl.Instance.circleInner.color = new Color32(214,254,254, 255);
+            GameControl.Instance.circleOuter.color = new Color32(214, 254, 254, 109);
+            GameControl.Instance.ovalOuter.color = new Color32(1, 87, 255, 255);
+        }
     }
 
     // Update is called once per frame
@@ -82,17 +106,16 @@ public class BallController : MonoBehaviour
             //But the ball back into orbit if it hits a black tile
             if (collision.tag == "BlackTile")
             {
+                GameControl.Instance.player.SetActive(false);
+                Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
                 GameControl.Instance.GameOver();
-                //GameControl.Instance.Bounce();
-                // die
-
             }
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
             {
                 SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
-                GameObject temp = Instantiate(GameControl.Instance.pewhite,transform.position,Quaternion.identity);
+                GameObject temp = Instantiate(GameControl.Instance.pewhite, transform.position, Quaternion.identity);
                 Destroy(temp, 2);
                 player.ResetAngularVelocity();
                 GameControl.Instance.DestroyTiles();

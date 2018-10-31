@@ -20,10 +20,21 @@ public class GameControl : MonoBehaviour {
     public SpriteRenderer rendBackground;
     public Sprite[] backgrounds;
 
+    public SpriteRenderer circleInner;
+    public SpriteRenderer circleOuter;
+    public SpriteRenderer ovalOuter;
+
+    public GameObject g3innertrail;
+    public GameObject g3outertrail;
+    public GameObject g0innertrail;
+    public GameObject g0outertrail;
+
     public int NumOfTiles;
 
     public GameObject peyellow;
     public GameObject pewhite;
+    public GameObject pePlayerExplosion;
+    public GameObject player;
 
     public BallController Ball;
 
@@ -46,7 +57,7 @@ public class GameControl : MonoBehaviour {
         ArrangeTile();
 
         rend.sprite = planets[Random.Range(0, planets.Length)];
-        rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];
+        rendBackground.sprite = backgrounds[Random.Range(0, backgrounds.Length)];  
     }
 
     public void ArrangeTile()
@@ -98,6 +109,12 @@ public class GameControl : MonoBehaviour {
 
     public void GameOver()
     {
+        StartCoroutine("timer");
+    }
+
+    IEnumerator timer()
+    {
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(0);
     }
 }
