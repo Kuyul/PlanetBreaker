@@ -147,10 +147,10 @@ public class GameControl : MonoBehaviour
 
     public void GameOver()
     {
-        StartCoroutine("timer");
+        StartCoroutine("Timer");
     }
 
-    IEnumerator timer()
+    IEnumerator Timer()
     {
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(0);
@@ -161,8 +161,15 @@ public class GameControl : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+
+    //LevelManager
     public void ReduceHealth(int reduce)
     {
         Level.ReduceHealth(reduce);
+    }
+
+    public void HitAlien(GameObject obj)
+    {
+        Level.AlienEffect(obj);
     }
 }

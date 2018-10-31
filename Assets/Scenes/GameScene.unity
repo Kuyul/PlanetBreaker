@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a2c79c1d17d6b34b808585f316eb17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Planet: {fileID: 0}
+  Planet: {fileID: 2023594740}
   TileWhite:
   - {fileID: 1163045944420960, guid: 975a45735dc141144aec0c693a8b528c, type: 2}
   - {fileID: 1245727700626120, guid: 1f7e2087aeecf6e43a3d8d111210d37f, type: 2}
@@ -802,8 +802,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Planet: {fileID: 2023594741}
   HealthText: {fileID: 818691364}
-  planetSpinSpeed: 0
+  AlienContainer:
+  - {fileID: 1444216660855868, guid: 90e4811eeb08ccf4ab33f1c8db87459a, type: 2}
+  AlienAngularVelocity: -30
+  planetSpinSpeed: 20
   Health: 10
+  SpawnAlien: 1
 --- !u!4 &355642791
 Transform:
   m_ObjectHideFlags: 0

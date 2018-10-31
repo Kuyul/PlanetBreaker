@@ -100,6 +100,14 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "Alien1")
+        {
+            GameControl.Instance.HitAlien(collision.gameObject);
+            GameControl.Instance.Bounce();
+            SetOrbitLevel(3);
+            collision.gameObject.SetActive(false);
+        }
+
         //Sometimes this would trigger twice because the ball falls below the tiles and it hits the tile second the when it comes back up.
         if (Down)
         {
