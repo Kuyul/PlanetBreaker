@@ -1683,6 +1683,7 @@ MonoBehaviour:
   Up: 0
   Clickable: 1
   player: {fileID: 1148926602}
+  Shield: {fileID: 1558075575}
 --- !u!58 &727635542
 CircleCollider2D:
   m_ObjectHideFlags: 0
