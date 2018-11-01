@@ -8483,7 +8483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingAngularVelocity: 130
   StopVelocity: 30
-  AVFallIncrement: 0.15
+  AVFallIncrement: 8
   AVUpIncrement: 15
   rb: {fileID: 1148926601}
 --- !u!1 &1223568425

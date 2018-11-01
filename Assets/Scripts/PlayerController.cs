@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 
         if (SlowTime < 0)
         {
-            rb.angularVelocity -= AVFallIncrement;
+            rb.angularVelocity -= AVFallIncrement * Time.deltaTime;
         }
 
         if (Input.GetMouseButtonDown(0))
