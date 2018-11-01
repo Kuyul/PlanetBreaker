@@ -104,7 +104,7 @@ public class GameControl : MonoBehaviour
         }
 
         //Set 1 white tile at the start
-        ActiveWhiteTiles = 1;
+        ActiveWhiteTiles = 3;
         ArrangeTile();
 
         rend.sprite = planets[Random.Range(0, planets.Length)];

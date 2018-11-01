@@ -1444,7 +1444,7 @@ MonoBehaviour:
   PowerAlien: {fileID: 1444216660855868, guid: 9d10d97dae1cec1448b3dea7e01d3bf9, type: 2}
   PlanetBase: {fileID: 2023594737}
   AlienAngularVelocity: -30
-  AlienChance: 50
+  AlienChance: 10
   planetSpinSpeed: 20
   Health: 10
   SpawnAlien: 1

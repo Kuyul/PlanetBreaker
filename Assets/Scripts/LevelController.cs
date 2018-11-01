@@ -83,7 +83,7 @@ public class LevelController : MonoBehaviour {
         {
             Aliens.Add(ShieldAlien);
         }
-        if(RotateAlien)
+        if(RotateAlienbool)
         {
             Aliens.Add(RotateAlien);
         }

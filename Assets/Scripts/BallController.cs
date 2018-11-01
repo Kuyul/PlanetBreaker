@@ -23,6 +23,7 @@ public class BallController : MonoBehaviour
     private Vector3 FallVector;
     private Vector3 UpVector;
     private bool ShieldActive = false;
+    private bool Undying = false;
 
     private int reverseNumber=0;
 
@@ -142,28 +143,13 @@ public class BallController : MonoBehaviour
         //Sometimes this would trigger twice because the ball falls below the tiles and it hits the tile second the when it comes back up.
         if (Down)
         {
-            //But the ball back into orbit if it hits a black tile
-            if (collision.tag == "BlackTile")
-            {
-                if (ShieldActive)
-                {
-                    ShieldActive = false;
-                    Shield.SetActive(false);
-                    GameControl.Instance.Bounce();
-                }
-                else
-                {
-                    GameControl.Instance.Player.SetActive(false);
-                    Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
-                    GameControl.Instance.GameOver();
-                }
-            }
             //If it hits a white tile, the tile changes to a Black Tile
-            else if (collision.tag == "WhiteTile")
+            if (collision.tag == "WhiteTile")
             {
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
+                StartCoroutine(UndyingTimer());
                 if (Lvl >2)
                 {
                     GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
@@ -191,6 +177,7 @@ public class BallController : MonoBehaviour
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
+                StartCoroutine(UndyingTimer());
                 if (Lvl > 2)
                 {
                     GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
@@ -211,6 +198,11 @@ public class BallController : MonoBehaviour
                 }
 
             }
+            else if (collision.tag == "BlackTile")
+            {
+                StartCoroutine(BlackTile());
+            }
+
         }
     }
 
@@ -232,6 +224,35 @@ public class BallController : MonoBehaviour
         {
             var multi = (int)Mathf.Pow(2, Lvl);
             DmgText.text = "DMG x" + multi;
+        }
+    }
+
+    //Set the ball to "Undying Mode", which prevents the ball from dying for 0.1 seconds after hitting a yellow or white tile
+    IEnumerator UndyingTimer()
+    {
+        Undying = true;
+        yield return new WaitForSeconds(0.1f);
+        Undying = false;
+    }
+
+    //Wait 0.01 second to see whether the ball has also collided with a yellow or white tile, if so, perform the following logic.
+    IEnumerator BlackTile()
+    {
+        yield return new WaitForSeconds(0.01f);
+        if (!Undying)
+        {
+            if (ShieldActive)
+            {
+                ShieldActive = false;
+                Shield.SetActive(false);
+                GameControl.Instance.Bounce();
+            }
+            else
+            {
+                GameControl.Instance.Player.SetActive(false);
+                Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
+                GameControl.Instance.GameOver();
+            }
         }
     }
 }
