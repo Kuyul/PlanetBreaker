@@ -115,7 +115,6 @@ public class GameControl : MonoBehaviour
     private void Update()
     {
         // check if animation has finished playing
-        //keeps putting error on console. how to remove????????? - A simple If statement does it ;) Kyle
         if (AnimBall.activeInHierarchy)
         {
             if (ball.GetCurrentAnimatorStateInfo(0).IsName("BallMove") && ball.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
@@ -257,12 +256,14 @@ public class GameControl : MonoBehaviour
         buttonpop.Play();
         Time.timeScale = 0;
         PanelPause.SetActive(true);
+        UnMuteAll();
     }
 
     public void UnPauseGame()
     {
         Time.timeScale = 1;
         PanelPause.SetActive(false);
+        MuteAll();
     }
 
     //Jewel functions
