@@ -18,6 +18,12 @@ public class BallController : MonoBehaviour
     public GameObject Shield;
     public Text DmgText;
 
+    //Texts
+    public GameObject NiceText;
+    public GameObject ExtremeText;
+    public GameObject MagnificentText;
+    public GameObject TextSpawnPosition;
+
     //Declare Private variables
     private int Lvl;
     private Vector3 FallVector;
@@ -149,7 +155,7 @@ public class BallController : MonoBehaviour
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
-                StartCoroutine(UndyingTimer());
+                //StartCoroutine(UndyingTimer());
                 if (Lvl >2)
                 {
                     GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
@@ -178,7 +184,7 @@ public class BallController : MonoBehaviour
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
-                StartCoroutine(UndyingTimer());
+                //StartCoroutine(UndyingTimer());
                 if (Lvl > 2)
                 {
                     GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
@@ -202,7 +208,22 @@ public class BallController : MonoBehaviour
             }
             else if (collision.tag == "BlackTile")
             {
-                StartCoroutine(BlackTile());
+                //StartCoroutine(BlackTile());
+                if (!Undying)
+                {
+                    if (ShieldActive)
+                    {
+                        ShieldActive = false;
+                        Shield.SetActive(false);
+                        GameControl.Instance.Bounce();
+                    }
+                    else
+                    {
+                        GameControl.Instance.Player.SetActive(false);
+                        Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
+                        GameControl.Instance.GameOver();
+                    }
+                }
             }
 
         }
@@ -241,20 +262,20 @@ public class BallController : MonoBehaviour
     IEnumerator BlackTile()
     {
         yield return new WaitForSeconds(0.01f);
-        if (!Undying)
-        {
-            if (ShieldActive)
-            {
-                ShieldActive = false;
-                Shield.SetActive(false);
-                GameControl.Instance.Bounce();
-            }
-            else
-            {
-                GameControl.Instance.Player.SetActive(false);
-                Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
-                GameControl.Instance.GameOver();
-            }
-        }
+        
+    }
+
+    IEnumerator CreateText(int lvl)
+    {
+        GameObject obj;
+
+        //if (lvl == 1)
+        //{
+            obj = Instantiate(NiceText, TextSpawnPosition.transform.position, Quaternion.identity);
+        //}
+
+        yield return new WaitForSeconds(0.9f);
+
+        Destroy(obj);
     }
 }
