@@ -16,7 +16,6 @@ public class BallController : MonoBehaviour
 
     public PlayerController player;
     public GameObject Shield;
-    public Text DmgText;
 
     //Texts
     public GameObject NiceText;
@@ -29,9 +28,8 @@ public class BallController : MonoBehaviour
     private Vector3 FallVector;
     private Vector3 UpVector;
     private bool ShieldActive = false;
-    private bool Undying = false;
 
-    private int reverseNumber=0;
+    private int reverseNumber = 0;
 
     // Use this for initialization
     void Start()
@@ -41,7 +39,7 @@ public class BallController : MonoBehaviour
         transform.localPosition = new Vector3(0, OrbitHeights[Lvl], 0); //Set the initial player position to the height of the first orbit layer
 
         FallVector = new Vector3(0, FallSpeed, 0);
-        UpVector = new Vector3(0, BounceSpeed, 0);        
+        UpVector = new Vector3(0, BounceSpeed, 0);
     }
 
     private void Update()
@@ -54,8 +52,8 @@ public class BallController : MonoBehaviour
             GameControl.Instance.g3innertrail.SetActive(false);
             GameControl.Instance.g3outertrail.SetActive(false);
 
-            GameControl.Instance.circleInner.color = new Color32(255,122,61, 255);
-            GameControl.Instance.circleOuter.color = new Color32(168,4,17, 109);
+            GameControl.Instance.circleInner.color = new Color32(255, 122, 61, 255);
+            GameControl.Instance.circleOuter.color = new Color32(168, 4, 17, 109);
             GameControl.Instance.ovalOuter.color = new Color32(255, 118, 118, 255);
         }
         if (Lvl == 3)
@@ -65,7 +63,7 @@ public class BallController : MonoBehaviour
             GameControl.Instance.g3innertrail.SetActive(true);
             GameControl.Instance.g3outertrail.SetActive(true);
 
-            GameControl.Instance.circleInner.color = new Color32(214,254,254, 255);
+            GameControl.Instance.circleInner.color = new Color32(214, 254, 254, 255);
             GameControl.Instance.circleOuter.color = new Color32(214, 254, 254, 109);
             GameControl.Instance.ovalOuter.color = new Color32(1, 87, 255, 255);
         }
@@ -88,31 +86,31 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-      
-            Vector3 NewPosition = transform.localPosition;
 
-            //while "Down" ball speeds down.
-            if (Down)
-            {
-                NewPosition -= FallVector;
-            }
+        Vector3 NewPosition = transform.localPosition;
 
-            //while "Up" the ball speeds up.
-            if (Up)
-            {
-                NewPosition += UpVector;
-            }
+        //while "Down" ball speeds down.
+        if (Down)
+        {
+            NewPosition -= FallVector;
+        }
 
-            //At any time if the position of the ball is higher than the orbit, adjust to the current orbit's height
-            if (NewPosition.y >= OrbitHeights[Lvl])
-            {
-                NewPosition = new Vector3(0, OrbitHeights[Lvl], 0);
-                Up = false;
-                Clickable = true;
-            }
+        //while "Up" the ball speeds up.
+        if (Up)
+        {
+            NewPosition += UpVector;
+        }
 
-            transform.localPosition = NewPosition;
-        
+        //At any time if the position of the ball is higher than the orbit, adjust to the current orbit's height
+        if (NewPosition.y >= OrbitHeights[Lvl])
+        {
+            NewPosition = new Vector3(0, OrbitHeights[Lvl], 0);
+            Up = false;
+            Clickable = true;
+        }
+
+        transform.localPosition = NewPosition;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -125,7 +123,7 @@ public class BallController : MonoBehaviour
             collision.gameObject.SetActive(false);
             GameControl.Instance.alienhit.Play();
         }
-        if(collision.tag == "Alien2")
+        if (collision.tag == "Alien2")
         {
             GameControl.Instance.Bounce();
             ShieldActive = true;
@@ -135,9 +133,9 @@ public class BallController : MonoBehaviour
             GameControl.Instance.alienhit.Play();
         }
         if (collision.tag == "Alien3")
-        {       
+        {
             reverseNumber += 1;
-            GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180*reverseNumber);
+            GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180 * reverseNumber);
             player.StartingAngularVelocity = -player.StartingAngularVelocity;
             player.rb.angularVelocity = player.StartingAngularVelocity;
             GameControl.Instance.Bounce();
@@ -155,8 +153,7 @@ public class BallController : MonoBehaviour
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
-                //StartCoroutine(UndyingTimer());
-                if (Lvl >2)
+                if (Lvl > 2)
                 {
                     GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
                     Destroy(temp, 2);
@@ -167,7 +164,6 @@ public class BallController : MonoBehaviour
                 player.ResetAngularVelocity();
                 GameControl.Instance.ConvertTile(collision.gameObject);
                 GameControl.Instance.SpawnAlien();
-                GameControl.Instance.IncrementTimer();
                 GameControl.Instance.hits[Random.Range(0, GameControl.Instance.hits.Length)].Play();
                 //This if statement will always be true
                 if (Lvl == 0)
@@ -184,7 +180,6 @@ public class BallController : MonoBehaviour
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
-                //StartCoroutine(UndyingTimer());
                 if (Lvl > 2)
                 {
                     GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
@@ -197,7 +192,6 @@ public class BallController : MonoBehaviour
                 player.AddAngularVelocity();
                 GameControl.Instance.ConvertTile(collision.gameObject);
                 GameControl.Instance.SpawnAlien();
-                GameControl.Instance.IncrementTimer();
                 GameControl.Instance.hits[Random.Range(0, GameControl.Instance.hits.Length)].Play();
 
                 if (Lvl + 1 < OrbitHeights.Length)
@@ -208,21 +202,18 @@ public class BallController : MonoBehaviour
             }
             else if (collision.tag == "BlackTile")
             {
-                //StartCoroutine(BlackTile());
-                if (!Undying)
+
+                if (ShieldActive)
                 {
-                    if (ShieldActive)
-                    {
-                        ShieldActive = false;
-                        Shield.SetActive(false);
-                        GameControl.Instance.Bounce();
-                    }
-                    else
-                    {
-                        GameControl.Instance.Player.SetActive(false);
-                        Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
-                        GameControl.Instance.GameOver();
-                    }
+                    ShieldActive = false;
+                    Shield.SetActive(false);
+                    GameControl.Instance.Bounce();
+                }
+                else
+                {
+                    GameControl.Instance.Player.SetActive(false);
+                    Instantiate(GameControl.Instance.pePlayerExplosion, transform.position, Quaternion.identity);
+                    GameControl.Instance.GameOver();
                 }
             }
 
@@ -239,40 +230,31 @@ public class BallController : MonoBehaviour
         Lvl = level;
         FallVector = new Vector3(0, FallSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
         UpVector = new Vector3(0, BounceSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
-        if(Lvl == 0)
+        if (Lvl == 0)
         {
-            DmgText.text = "";
         }
         else
         {
             var multi = (int)Mathf.Pow(2, Lvl);
-            DmgText.text = "DMG x" + multi;
+            StartCoroutine(CreateText(Lvl));
         }
-    }
-
-    //Set the ball to "Undying Mode", which prevents the ball from dying for 0.1 seconds after hitting a yellow or white tile
-    IEnumerator UndyingTimer()
-    {
-        Undying = true;
-        yield return new WaitForSeconds(0.1f);
-        Undying = false;
-    }
-
-    //Wait 0.01 second to see whether the ball has also collided with a yellow or white tile, if so, perform the following logic.
-    IEnumerator BlackTile()
-    {
-        yield return new WaitForSeconds(0.01f);
-        
     }
 
     IEnumerator CreateText(int lvl)
     {
         GameObject obj;
 
-        //if (lvl == 1)
-        //{
+        if (lvl == 1)
+        {
             obj = Instantiate(NiceText, TextSpawnPosition.transform.position, Quaternion.identity);
-        //}
+        } else if (lvl == 2)
+        {
+            obj = Instantiate(ExtremeText, TextSpawnPosition.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            obj = Instantiate(MagnificentText, TextSpawnPosition.transform.position, Quaternion.identity);
+        }
 
         yield return new WaitForSeconds(0.9f);
 

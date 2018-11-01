@@ -31,9 +31,6 @@ public class GameControl : MonoBehaviour
 
     public int NumOfTiles;
     public bool startgaming;
-    public float TimeLeft = 5.0f;
-    public float TimeIncrement = 1.5f;
-    public bool TimerEnabled = true;
     
     public AudioSource alienhit;
     public AudioSource buttonpop;
@@ -123,19 +120,6 @@ public class GameControl : MonoBehaviour
 
     private void Update()
     {
-        //Timer logic
-        if (TimerEnabled)
-        {
-            if (TimerActive)
-            {
-                TimeLeft -= Time.deltaTime;
-                TimerText.text = TimeLeft.ToString("##.##");
-                if (TimeLeft <= 0)
-                {
-                    GameOver();
-                }
-            }
-        }
 
         // check if animation has finished playing
         if (AnimBall.activeInHierarchy)
@@ -361,11 +345,5 @@ public class GameControl : MonoBehaviour
         intro.volume = 0;
         death.volume = 0;
         PlayerPrefs.SetInt("sound", 0);        
-    }
-
-    public void IncrementTimer()
-    {
-        TimeLeft += TimeIncrement;
-        TimerAnim.SetTrigger("Add");
     }
 }
