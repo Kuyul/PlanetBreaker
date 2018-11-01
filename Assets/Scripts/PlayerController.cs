@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //Declare Public Variables
-    public float StartingAngularVelocity;
+    public float StartingAngularVelocity;    
     public float StopVelocity;
     public float AVFallIncrement;
     public float AVUpIncrement;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
             SlowTime = 5;
         }
 
-        if (rb.angularVelocity < StopVelocity)
+        if (Mathf.Abs(rb.angularVelocity) < StopVelocity)
         {
             GameControl.Instance.GameOver();
         }

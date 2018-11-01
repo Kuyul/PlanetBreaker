@@ -21,6 +21,8 @@ public class GameControl : MonoBehaviour
     public GameObject Mutebutton;
     public GameObject UnMutebutton;
 
+    public Transform PlayerBall;
+
     public SpriteRenderer rend;
     public Sprite[] planets;
 

@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour {
     public Rigidbody2D Planet;
     public Slider HealthBar;
     public Text Level;
+    public GameObject RotateAlien;
     public GameObject ShieldAlien;
     public GameObject PowerAlien;
     public GameObject PlanetBase;
@@ -23,6 +24,7 @@ public class LevelController : MonoBehaviour {
     private int HealthLeft = 10;
     private bool ShieldAlienbool = false;
     private bool PowerAlienbool = false;
+    private bool RotateAlienbool = false;
     private List<GameObject> Aliens = new List<GameObject>();
 
     // Use this for initialization
@@ -35,6 +37,14 @@ public class LevelController : MonoBehaviour {
         Level.text = "" + level;
 
         float PlanetSpin = 0;
+
+        //testing . . . . . . alien3 appear from lev 2
+
+        if (level >= 2)
+        {
+            RotateAlienbool = true;
+        }
+
         //Power Aliens can appear from stage 21 onwards
         if (level >= 21)
         {
@@ -72,6 +82,10 @@ public class LevelController : MonoBehaviour {
         if (ShieldAlienbool)
         {
             Aliens.Add(ShieldAlien);
+        }
+        if(RotateAlien)
+        {
+            Aliens.Add(RotateAlien);
         }
     }
 

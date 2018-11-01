@@ -9,6 +9,7 @@ TagManager:
   - YellowTile
   - Alien1
   - Alien2
+  - Alien3
   layers:
   - Default
   - TransparentFX

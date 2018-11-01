@@ -24,6 +24,8 @@ public class BallController : MonoBehaviour
     private Vector3 UpVector;
     private bool ShieldActive = false;
 
+    private int reverseNumber=0;
+
     // Use this for initialization
     void Start()
     {
@@ -121,6 +123,17 @@ public class BallController : MonoBehaviour
             GameControl.Instance.Bounce();
             ShieldActive = true;
             Shield.SetActive(true);
+            GameControl.Instance.AddJewel(5);
+            collision.gameObject.SetActive(false);
+            GameControl.Instance.alienhit.Play();
+        }
+        if (collision.tag == "Alien3")
+        {       
+            reverseNumber += 1;
+            GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180*reverseNumber);
+            player.StartingAngularVelocity = -player.StartingAngularVelocity;
+            player.rb.angularVelocity = player.StartingAngularVelocity;
+            GameControl.Instance.Bounce();
             GameControl.Instance.AddJewel(5);
             collision.gameObject.SetActive(false);
             GameControl.Instance.alienhit.Play();

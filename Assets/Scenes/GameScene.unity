@@ -455,6 +455,7 @@ MonoBehaviour:
   Player: {fileID: 1148926599}
   Mutebutton: {fileID: 761798426}
   UnMutebutton: {fileID: 698662910}
+  PlayerBall: {fileID: 727635540}
   rend: {fileID: 2023594739}
   planets:
   - {fileID: 21300000, guid: 297ff399ad9119b4886583f3afb10d35, type: 3}
@@ -577,7 +578,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 107736227}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 727635540}
@@ -1436,12 +1437,14 @@ MonoBehaviour:
   Planet: {fileID: 2023594741}
   HealthBar: {fileID: 1136616773}
   Level: {fileID: 1730631587}
+  RotateAlien: {fileID: 1560337124772020, guid: 4ae7e13e43780be46b714476238881c7,
+    type: 2}
   ShieldAlien: {fileID: 1444216660855868, guid: 90e4811eeb08ccf4ab33f1c8db87459a,
     type: 2}
   PowerAlien: {fileID: 1444216660855868, guid: 9d10d97dae1cec1448b3dea7e01d3bf9, type: 2}
   PlanetBase: {fileID: 2023594737}
   AlienAngularVelocity: -30
-  AlienChance: 10
+  AlienChance: 50
   planetSpinSpeed: 20
   Health: 10
   SpawnAlien: 1
@@ -2857,7 +2860,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 908188135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 727635540}
