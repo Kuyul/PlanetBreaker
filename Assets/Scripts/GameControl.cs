@@ -33,6 +33,7 @@ public class GameControl : MonoBehaviour
     public bool startgaming;
     public float TimeLeft = 5.0f;
     public float TimeIncrement = 1.5f;
+    public bool TimerEnabled = true;
     
     public AudioSource alienhit;
     public AudioSource buttonpop;
@@ -123,13 +124,16 @@ public class GameControl : MonoBehaviour
     private void Update()
     {
         //Timer logic
-        if (TimerActive)
+        if (TimerEnabled)
         {
-            TimeLeft -= Time.deltaTime;
-            TimerText.text = TimeLeft.ToString("##.##");
-            if (TimeLeft <= 0)
+            if (TimerActive)
             {
-                GameOver();
+                TimeLeft -= Time.deltaTime;
+                TimerText.text = TimeLeft.ToString("##.##");
+                if (TimeLeft <= 0)
+                {
+                    GameOver();
+                }
             }
         }
 
