@@ -13,6 +13,8 @@ public class GameControl : MonoBehaviour
     public Transform Planet;
     public GameObject[] TileWhite;
     public GameObject TileBlack;
+    public GameObject TileGreen;
+    public int GreentileChance = 5; //Percentage
 
     public GameObject Menu;
     public GameObject InGame;
@@ -105,6 +107,10 @@ public class GameControl : MonoBehaviour
             Instance = this;
         }
 
+        //If level is continued, start the game right away without showing the main menu
+        if (LevelContinue.Instance.levelIsContinued)
+            StartGame();
+
         //Set 1 white tile at the start
         ActiveWhiteTiles = 3;
         ArrangeTile();
@@ -159,6 +165,20 @@ public class GameControl : MonoBehaviour
             WhiteTiles.Add(index);
         }
 
+        //TODO: add a green tile by chance
+        int chance = Random.Range(0,100);
+        int greentilePos = -1;
+        if (chance < GreentileChance) {
+            int index = Random.Range(0, NumOfTiles);
+            while (WhiteTiles.Contains(index))
+            {
+                index = Random.Range(0, NumOfTiles);
+            }
+            WhiteTiles.Add(index);
+            greentilePos = index;
+        }
+
+
         for (int i = 0; i < NumOfTiles; i++)
         {
             // instantiate black tiles
@@ -172,7 +192,15 @@ public class GameControl : MonoBehaviour
             // instantiate white tiles
             else
             {
-                GameObject obj = Instantiate(TileWhite[Random.Range(0, TileWhite.Length)], transform.position, Quaternion.identity);
+                GameObject obj;
+                if (i == greentilePos)
+                {
+                    obj = Instantiate(TileGreen, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    obj = Instantiate(TileWhite[Random.Range(0, TileWhite.Length)], transform.position, Quaternion.identity);
+                }
                 obj.transform.SetParent(Planet);
                 TilesToDestroy.Add(obj);
                 TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i);
@@ -234,6 +262,7 @@ public class GameControl : MonoBehaviour
     {
         death.Play();
         ingame.Stop();
+        LevelContinue.Instance.levelIsContinued = false;
         StartCoroutine(Timer(1f));
     }
 
@@ -246,7 +275,8 @@ public class GameControl : MonoBehaviour
     public void NextLevel()
     {
         Level.IncrementLevel();
-        AddJewel(10);
+        AddJewel(5);
+        LevelContinue.Instance.levelIsContinued = true;
         StartCoroutine(Timer(2.3f));
     }
 

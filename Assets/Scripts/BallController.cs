@@ -117,20 +117,13 @@ public class BallController : MonoBehaviour
     {
         if (collision.tag == "Alien1")
         {
-            GameControl.Instance.Bounce();
+            AlienCommonFunctions(collision);
             SetOrbitLevel(3);
-            GameControl.Instance.AddJewel(5);
-            collision.gameObject.SetActive(false);
-            GameControl.Instance.alienhit.Play();
         }
         if (collision.tag == "Alien2")
         {
-            GameControl.Instance.Bounce();
             ShieldActive = true;
             Shield.SetActive(true);
-            GameControl.Instance.AddJewel(5);
-            collision.gameObject.SetActive(false);
-            GameControl.Instance.alienhit.Play();
         }
         if (collision.tag == "Alien3")
         {
@@ -138,10 +131,6 @@ public class BallController : MonoBehaviour
             GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180 * reverseNumber);
             player.StartingAngularVelocity = -player.StartingAngularVelocity;
             player.rb.angularVelocity = player.StartingAngularVelocity;
-            GameControl.Instance.Bounce();
-            GameControl.Instance.AddJewel(5);
-            collision.gameObject.SetActive(false);
-            GameControl.Instance.alienhit.Play();
         }
 
         //Sometimes this would trigger twice because the ball falls below the tiles and it hits the tile second the when it comes back up.
@@ -150,21 +139,12 @@ public class BallController : MonoBehaviour
             //If it hits a white tile, the tile changes to a Black Tile
             if (collision.tag == "WhiteTile")
             {
-                var dmg = (int)Mathf.Pow(2, Lvl);
-                GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
-                GameControl.Instance.Bounce();
-                if (Lvl > 2)
-                {
-                    GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
-                    Destroy(temp, 2);
-                }
                 SetOrbitLevel(0);
+                TileCommonFunctions(collision);
+                //Particle Effect
                 GameObject temp2 = Instantiate(GameControl.Instance.pewhite, transform.position, Quaternion.identity);
                 Destroy(temp2, 2);
                 player.ResetAngularVelocity();
-                GameControl.Instance.ConvertTile(collision.gameObject);
-                GameControl.Instance.SpawnAlien();
-                GameControl.Instance.hits[Random.Range(0, GameControl.Instance.hits.Length)].Play();
                 //This if statement will always be true
                 if (Lvl == 0)
                 {
@@ -177,23 +157,12 @@ public class BallController : MonoBehaviour
             //If it hits a yellow tile, break the tile and go up a level
             else if (collision.tag == "YellowTile")
             {
-                var dmg = (int)Mathf.Pow(2, Lvl);
-                GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
-                GameControl.Instance.Bounce();
-                if (Lvl > 2)
-                {
-                    GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
-                    Destroy(temp, 2);
-                }
-
+                TileCommonFunctions(collision);
+                //Particle Effect
                 GameObject temp2 = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
                 Destroy(temp2, 2);
-
                 player.AddAngularVelocity();
-                GameControl.Instance.ConvertTile(collision.gameObject);
-                GameControl.Instance.SpawnAlien();
-                GameControl.Instance.hits[Random.Range(0, GameControl.Instance.hits.Length)].Play();
-
+                //Increment orbit height
                 if (Lvl + 1 < OrbitHeights.Length)
                 {
                     SetOrbitLevel(Lvl + 1);
@@ -216,8 +185,46 @@ public class BallController : MonoBehaviour
                     GameControl.Instance.GameOver();
                 }
             }
-
+            else if (collision.tag == "GreenTile")
+            {
+                TileCommonFunctions(collision);
+                GameControl.Instance.AddJewel(1);
+                //Particle Effect
+                GameObject temp2 = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
+                Destroy(temp2, 2);
+                player.AddAngularVelocity();
+                //Increment orbit height
+            }
         }
+    }
+
+
+    //We always always want to group common functions ito one method for
+    //1. its easy to maintain code
+    //2. it looks much better (shorter code)
+    //3. its easier to read code in the future
+
+    //Group common tile functions for white/yellow/green
+    private void TileCommonFunctions(Collider2D collision)
+    {
+        if (Lvl > 2)
+        {
+            GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
+            Destroy(temp, 2);
+        }
+        var dmg = (int)Mathf.Pow(2, Lvl);
+        GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
+        GameControl.Instance.Bounce();
+        GameControl.Instance.ConvertTile(collision.gameObject);
+        GameControl.Instance.SpawnAlien();
+        GameControl.Instance.hits[Random.Range(0, GameControl.Instance.hits.Length)].Play();
+    }
+
+    //Group common alien functions
+    private void AlienCommonFunctions(Collider2D collision) {
+        collision.gameObject.SetActive(false);
+        GameControl.Instance.Bounce();
+        GameControl.Instance.alienhit.Play();
     }
 
     public int GetOrbitLevel()

@@ -543,6 +543,8 @@ MonoBehaviour:
   - {fileID: 1245727700626120, guid: 1f7e2087aeecf6e43a3d8d111210d37f, type: 2}
   - {fileID: 1541510487690716, guid: ec399031d56a02949a03707d770717f4, type: 2}
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
+  TileGreen: {fileID: 1047672292951462, guid: 94886eedea65f8a47bdfdb758ac04ff3, type: 2}
+  GreentileChance: 50
   Menu: {fileID: 1545996952}
   InGame: {fileID: 54904877}
   AnimBall: {fileID: 1567409871}
@@ -14655,6 +14657,47 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1863488932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1863488934}
+  - component: {fileID: 1863488933}
+  m_Layer: 0
+  m_Name: LevelContinue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1863488933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1863488932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787c695240958f84fa55739903b9f5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIsContinued: 0
+--- !u!4 &1863488934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1863488932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.18346, y: 3.4517655, z: 5007.3423}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1904447143
 GameObject:
   m_ObjectHideFlags: 0
