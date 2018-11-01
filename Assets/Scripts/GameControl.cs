@@ -79,7 +79,7 @@ public class GameControl : MonoBehaviour
 
     private void Awake()
     {
-        if (PlayerPrefs.GetInt("sound") == 0)
+        if (PlayerPrefs.GetInt("sound",1) == 0)
         {
             alienhit.volume = 0;
             buttonpop.volume = 0;
