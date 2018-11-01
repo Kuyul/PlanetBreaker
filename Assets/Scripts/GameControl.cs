@@ -108,8 +108,11 @@ public class GameControl : MonoBehaviour
         }
 
         //If level is continued, start the game right away without showing the main menu
-        if (LevelContinue.Instance.levelIsContinued)
-            StartGame();
+        if (LevelContinue.Instance != null)
+        {
+            if (LevelContinue.Instance.levelIsContinued)
+                StartGame();
+        }
 
         //Set 1 white tile at the start
         ActiveWhiteTiles = 3;
