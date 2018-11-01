@@ -148,7 +148,7 @@ public class BallController : MonoBehaviour
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
             {
-                var dmg = 2 * Lvl;
+                var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
@@ -170,7 +170,7 @@ public class BallController : MonoBehaviour
             //If it hits a yellow tile, break the tile and go up a level
             else if (collision.tag == "YellowTile")
             {
-                var dmg = 2 * Lvl;
+                var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
                 GameObject temp = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
@@ -205,7 +205,7 @@ public class BallController : MonoBehaviour
         }
         else
         {
-            var multi = 2 * Lvl;
+            var multi = (int)Mathf.Pow(2, Lvl);
             DmgText.text = "DMG x" + multi;
         }
     }
