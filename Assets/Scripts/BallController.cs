@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class BallController : MonoBehaviour
 
     public PlayerController player;
     public GameObject Shield;
+    public Text DmgText;
 
     //Declare Private variables
     private int Lvl;
@@ -146,7 +148,8 @@ public class BallController : MonoBehaviour
             //If it hits a white tile, the tile changes to a Black Tile
             else if (collision.tag == "WhiteTile")
             {
-                GameControl.Instance.ReduceHealth(Lvl + 1); //Reduce planet health
+                var dmg = 2 * Lvl;
+                GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
                 GameObject temp = Instantiate(GameControl.Instance.pewhite, transform.position, Quaternion.identity);
@@ -155,7 +158,6 @@ public class BallController : MonoBehaviour
                 GameControl.Instance.ConvertTile(collision.gameObject);
                 GameControl.Instance.SpawnAlien();
                 GameControl.Instance.hits[Random.Range(0, GameControl.Instance.hits.Length)].Play();
-
                 //This if statement will always be true
                 if (Lvl == 0)
                 {
@@ -168,7 +170,8 @@ public class BallController : MonoBehaviour
             //If it hits a yellow tile, break the tile and go up a level
             else if (collision.tag == "YellowTile")
             {
-                GameControl.Instance.ReduceHealth(Lvl + 1); //Reduce planet health
+                var dmg = 2 * Lvl;
+                GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
                 GameObject temp = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
                 Destroy(temp, 2);
@@ -196,5 +199,14 @@ public class BallController : MonoBehaviour
         Lvl = level;
         FallVector = new Vector3(0, FallSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
         UpVector = new Vector3(0, BounceSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
+        if(Lvl == 0)
+        {
+            DmgText.text = "";
+        }
+        else
+        {
+            var multi = 2 * Lvl;
+            DmgText.text = "DMG x" + multi;
+        }
     }
 }
