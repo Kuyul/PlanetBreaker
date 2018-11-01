@@ -122,11 +122,13 @@ public class BallController : MonoBehaviour
         }
         if (collision.tag == "Alien2")
         {
+            AlienCommonFunctions(collision);
             ShieldActive = true;
             Shield.SetActive(true);
         }
         if (collision.tag == "Alien3")
         {
+            AlienCommonFunctions(collision);
             reverseNumber += 1;
             GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180 * reverseNumber);
             player.StartingAngularVelocity = -player.StartingAngularVelocity;
