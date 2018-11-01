@@ -18,6 +18,8 @@ public class GameControl : MonoBehaviour
     public GameObject InGame;
     public GameObject AnimBall;
     public GameObject Player;
+    public GameObject Mutebutton;
+    public GameObject UnMutebutton;
 
     public SpriteRenderer rend;
     public Sprite[] planets;
@@ -39,6 +41,8 @@ public class GameControl : MonoBehaviour
     public GameObject peyellow;
     public GameObject pewhite;
     public GameObject pePlayerExplosion;
+    public GameObject peExplosion;
+    public GameObject peTrail;
     
     public SpriteRenderer circleInner;
     public SpriteRenderer circleOuter;
@@ -72,12 +76,30 @@ public class GameControl : MonoBehaviour
     private int ActiveWhiteTiles;
 
     // Use this for initialization
+
+    private void Awake()
+    {
+        if (PlayerPrefs.GetInt("sound") == 0)
+        {
+            alienhit.volume = 0;
+            buttonpop.volume = 0;
+            for (int i = 0; i < hits.Length; i++)
+            {
+                hits[i].volume = 0;
+            }
+            ingame.volume = 0;
+            intro.volume = 0;
+            death.volume = 0;
+        }    
+    }
+
     void Start()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+
         //Set 1 white tile at the start
         ActiveWhiteTiles = 1;
         ArrangeTile();
@@ -102,6 +124,18 @@ public class GameControl : MonoBehaviour
                 Player.SetActive(true);
                 Destroy(CameraControl.GetComponent<Animator>());
             }
+        }
+
+        // update sound icon if button is pressed
+        if (PlayerPrefs.GetInt("sound", 1) == 1)
+        {
+            Mutebutton.SetActive(false);
+            UnMutebutton.SetActive(true);
+        }
+        else
+        {
+            Mutebutton.SetActive(true);
+            UnMutebutton.SetActive(false);
         }
     }
 
@@ -195,12 +229,12 @@ public class GameControl : MonoBehaviour
     {
         death.Play();
         ingame.Stop();
-        StartCoroutine("Timer");
+        StartCoroutine(Timer(1f));
     }
 
-    IEnumerator Timer()
+    IEnumerator Timer(float time)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(time);
         SceneManager.LoadScene(0);
     }
 
@@ -208,7 +242,7 @@ public class GameControl : MonoBehaviour
     {
         Level.IncrementLevel();
         AddJewel(10);
-        SceneManager.LoadScene(0);
+        StartCoroutine(Timer(2.3f));
     }
 
 
@@ -262,18 +296,6 @@ public class GameControl : MonoBehaviour
 
     public void MuteAll()
     {
-        alienhit.volume = 0;
-        buttonpop.volume = 0;
-        for (int i = 0; i < hits.Length; i++)
-        {
-            hits[i].volume = 0;
-        }
-        ingame.volume = 0;
-        intro.volume = 0;
-    }
-
-    public void UnMuteAll()
-    {
         alienhit.volume = 1;
         buttonpop.volume = 1;
         for (int i = 0; i < hits.Length; i++)
@@ -282,5 +304,21 @@ public class GameControl : MonoBehaviour
         }
         ingame.volume = 1;
         intro.volume = 1;
+        death.volume = 1;
+        PlayerPrefs.SetInt("sound", 1);
+    }
+
+    public void UnMuteAll()
+    {
+        alienhit.volume = 0;
+        buttonpop.volume = 0;
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].volume = 0;
+        }
+        ingame.volume = 0;
+        intro.volume = 0;
+        death.volume = 0;
+        PlayerPrefs.SetInt("sound", 0);        
     }
 }

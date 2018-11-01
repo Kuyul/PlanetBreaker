@@ -11,6 +11,7 @@ public class LevelController : MonoBehaviour {
     public Text Level;
     public GameObject ShieldAlien;
     public GameObject PowerAlien;
+    public GameObject PlanetBase;
     public float AlienAngularVelocity;
     public int AlienChance = 10;
 
@@ -81,6 +82,9 @@ public class LevelController : MonoBehaviour {
 
         if(HealthLeft <= 0)
         {
+            PlanetBase.SetActive(false);
+            Instantiate(GameControl.Instance.peExplosion, PlanetBase.transform.position, Quaternion.identity);
+            Instantiate(GameControl.Instance.peTrail, PlanetBase.transform.position, Quaternion.identity);
             GameControl.Instance.NextLevel();
         }
     }
