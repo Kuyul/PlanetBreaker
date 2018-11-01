@@ -31,6 +31,8 @@ public class GameControl : MonoBehaviour
 
     public int NumOfTiles;
     public bool startgaming;
+    public float TimeLeft = 5.0f;
+    public float TimeIncrement = 1.5f;
     
     public AudioSource alienhit;
     public AudioSource buttonpop;
@@ -61,6 +63,8 @@ public class GameControl : MonoBehaviour
     public Text JewelText;
     public Text LevelText;
     public Text JewelTextMenu;
+    public Text TimerText;
+    public Animator TimerAnim;
 
     //Declare Controllers
     public BallController Ball;
@@ -77,6 +81,7 @@ public class GameControl : MonoBehaviour
     //Declare private variables
     private List<GameObject> TilesToDestroy = new List<GameObject>();
     private int ActiveWhiteTiles;
+    private bool TimerActive = false;
 
     // Use this for initialization
 
@@ -117,6 +122,17 @@ public class GameControl : MonoBehaviour
 
     private void Update()
     {
+        //Timer logic
+        if (TimerActive)
+        {
+            TimeLeft -= Time.deltaTime;
+            TimerText.text = TimeLeft.ToString("##.##");
+            if (TimeLeft <= 0)
+            {
+                GameOver();
+            }
+        }
+
         // check if animation has finished playing
         if (AnimBall.activeInHierarchy)
         {
@@ -125,6 +141,7 @@ public class GameControl : MonoBehaviour
                 AnimBall.SetActive(false);
                 Player.SetActive(true);
                 Destroy(CameraControl.GetComponent<Animator>());
+                TimerActive = true; //Start Timer
             }
         }
 
@@ -340,5 +357,11 @@ public class GameControl : MonoBehaviour
         intro.volume = 0;
         death.volume = 0;
         PlayerPrefs.SetInt("sound", 0);        
+    }
+
+    public void IncrementTimer()
+    {
+        TimeLeft += TimeIncrement;
+        TimerAnim.SetTrigger("Add");
     }
 }
