@@ -40,6 +40,7 @@ public class GameControl : MonoBehaviour
     //Effects
     public GameObject peyellow;
     public GameObject pewhite;
+    public GameObject peblue;
     public GameObject pePlayerExplosion;
     public GameObject peExplosion;
     public GameObject peTrail;
@@ -256,14 +257,30 @@ public class GameControl : MonoBehaviour
         buttonpop.Play();
         Time.timeScale = 0;
         PanelPause.SetActive(true);
-        UnMuteAll();
+        alienhit.Pause();
+        buttonpop.Pause();
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].Pause();
+        }
+        ingame.Pause();
+        intro.Pause();
+        death.Pause();
     }
 
     public void UnPauseGame()
     {
         Time.timeScale = 1;
         PanelPause.SetActive(false);
-        MuteAll();
+        alienhit.UnPause();
+        buttonpop.UnPause();
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].UnPause();
+        }
+        ingame.UnPause();
+        intro.UnPause();
+        death.UnPause();
     }
 
     //Jewel functions

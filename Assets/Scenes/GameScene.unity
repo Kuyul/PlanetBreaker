@@ -475,6 +475,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c3719b801dc08114da17069c67da06d8, type: 3}
   - {fileID: 21300000, guid: 36a1c6cde75b0b74dac09e56cb6c1485, type: 3}
   - {fileID: 21300000, guid: 2380948b92d167b4aa92d0f51e71bd16, type: 3}
+  - {fileID: 21300000, guid: e095474dd7268da4c8e709c74118d914, type: 3}
+  - {fileID: 21300000, guid: 9d17c69118f78a343bd12ac254887c3a, type: 3}
+  - {fileID: 21300000, guid: 34c0bc86f7d190e4d9c5babe1b2ce18c, type: 3}
+  - {fileID: 21300000, guid: 468e6c83cc573084cb975195f8c91713, type: 3}
+  - {fileID: 21300000, guid: 3b866ca7ca738824cae129e80d9497eb, type: 3}
+  - {fileID: 21300000, guid: 90b47d0aa655e5a498095481c66d7055, type: 3}
+  - {fileID: 21300000, guid: c8966b64605b1a4449b9952b3159e811, type: 3}
+  - {fileID: 21300000, guid: 8a4e659fd606e954b9c4af09aadba54a, type: 3}
+  - {fileID: 21300000, guid: 096e54633b52ccd4fa352844ef6511fc, type: 3}
+  - {fileID: 21300000, guid: f5cad54ef51924a42b20f147d9e07c76, type: 3}
+  - {fileID: 21300000, guid: 44dc04ac26fc3714dbb810261b658ad0, type: 3}
+  - {fileID: 21300000, guid: f770ac34d8d728548a2cf94c8ab6a7a3, type: 3}
+  - {fileID: 21300000, guid: 3ab2464b5c7502b4196d0abfb6255ffa, type: 3}
+  - {fileID: 21300000, guid: 04349db9c226db04b8a2e870028d87fe, type: 3}
+  - {fileID: 21300000, guid: edab14cd8d0bc5a47a0766f23ac5afd6, type: 3}
+  - {fileID: 21300000, guid: 67c3538f95515d34c9f974aec39c3f12, type: 3}
+  - {fileID: 21300000, guid: 771d1c8c7c478ed42bdce281c73bbd12, type: 3}
+  - {fileID: 21300000, guid: 4dd2118a89a89bf4791995e0a7c50a2e, type: 3}
+  - {fileID: 21300000, guid: 99220a2cdbea4cb4ba3662d8d99860d8, type: 3}
   rendBackground: {fileID: 188426147}
   backgrounds:
   - {fileID: 21300000, guid: 8421131277ccaae42801ee56792b366c, type: 3}
@@ -496,6 +515,7 @@ MonoBehaviour:
   intro: {fileID: 2024534629}
   peyellow: {fileID: 1752673918366762, guid: c57e68ab62cc486409da12b56eba2d46, type: 2}
   pewhite: {fileID: 1778662853406760, guid: f66caac30d0218f488ea333a74dc66d9, type: 2}
+  peblue: {fileID: 1204203362028262, guid: cb3470f3a531afa48be37b71ee69473c, type: 2}
   pePlayerExplosion: {fileID: 1709921138867090, guid: 60d52902c3b8cab40ae643bfa0a5c56a,
     type: 2}
   peExplosion: {fileID: 1041333844717584, guid: 4de4490d5ff8bdc4f94344246cfc3be5,

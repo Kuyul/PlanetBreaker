@@ -150,10 +150,15 @@ public class BallController : MonoBehaviour
             {
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
-                SetOrbitLevel(0);
                 GameControl.Instance.Bounce();
-                GameObject temp = Instantiate(GameControl.Instance.pewhite, transform.position, Quaternion.identity);
-                Destroy(temp, 2);
+                if (Lvl >2)
+                {
+                    GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
+                    Destroy(temp, 2);
+                }
+                SetOrbitLevel(0);
+                GameObject temp2 = Instantiate(GameControl.Instance.pewhite, transform.position, Quaternion.identity);
+                Destroy(temp2, 2);
                 player.ResetAngularVelocity();
                 GameControl.Instance.ConvertTile(collision.gameObject);
                 GameControl.Instance.SpawnAlien();
@@ -173,8 +178,15 @@ public class BallController : MonoBehaviour
                 var dmg = (int)Mathf.Pow(2, Lvl);
                 GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
                 GameControl.Instance.Bounce();
-                GameObject temp = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
-                Destroy(temp, 2);
+                if (Lvl > 2)
+                {
+                    GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
+                    Destroy(temp, 2);
+                }
+
+                GameObject temp2 = Instantiate(GameControl.Instance.peyellow, transform.position, Quaternion.identity);
+                Destroy(temp2, 2);
+
                 player.AddAngularVelocity();
                 GameControl.Instance.ConvertTile(collision.gameObject);
                 GameControl.Instance.SpawnAlien();
