@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &54904878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -545,7 +545,6 @@ MonoBehaviour:
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
   TileGreen: {fileID: 1047672292951462, guid: 94886eedea65f8a47bdfdb758ac04ff3, type: 2}
   GreentileChance: 50
-  LevelContinuePrefab: {fileID: 0}
   Menu: {fileID: 1545996952}
   InGame: {fileID: 54904877}
   AnimBall: {fileID: 1567409871}
@@ -1291,7 +1290,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8448,7 +8447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 26.2, y: -360}
+  m_AnchoredPosition: {x: 26.2, y: -1805}
   m_SizeDelta: {x: 721.8, y: 83.7}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1136616773
@@ -13877,7 +13876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1545996953
 RectTransform:
   m_ObjectHideFlags: 0
