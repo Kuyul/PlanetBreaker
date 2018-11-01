@@ -235,8 +235,10 @@ public class BallController : MonoBehaviour
         }
         else
         {
-            var multi = (int)Mathf.Pow(2, Lvl);
-            StartCoroutine(CreateText(Lvl));
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(CreateText(Lvl));
+            }
         }
     }
 

@@ -2702,7 +2702,6 @@ MonoBehaviour:
   Clickable: 1
   player: {fileID: 1148926602}
   Shield: {fileID: 1558075575}
-  DmgText: {fileID: 0}
   NiceText: {fileID: 1477416084817726, guid: 21b6478133a7f9e4493c70e2d5db14bd, type: 2}
   ExtremeText: {fileID: 1323134311261784, guid: 728bc9516df32414cafcc195090e2fc5,
     type: 2}
@@ -14036,7 +14035,6 @@ MonoBehaviour:
   Clickable: 1
   player: {fileID: 1148926602}
   Shield: {fileID: 0}
-  DmgText: {fileID: 0}
   NiceText: {fileID: 0}
   ExtremeText: {fileID: 0}
   MagnificentText: {fileID: 0}

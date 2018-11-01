@@ -79,7 +79,6 @@ public class GameControl : MonoBehaviour
     //Declare private variables
     private List<GameObject> TilesToDestroy = new List<GameObject>();
     private int ActiveWhiteTiles;
-    private bool TimerActive = false;
 
     // Use this for initialization
 
@@ -129,7 +128,6 @@ public class GameControl : MonoBehaviour
                 AnimBall.SetActive(false);
                 Player.SetActive(true);
                 Destroy(CameraControl.GetComponent<Animator>());
-                TimerActive = true; //Start Timer
             }
         }
 
