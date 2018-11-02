@@ -128,8 +128,7 @@ public class BallController : MonoBehaviour
             AlienCommonFunctions(collision);
             reverseNumber += 1;
             GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180 * reverseNumber);
-            player.StartingAngularVelocity = -player.StartingAngularVelocity;
-            player.rb.angularVelocity = player.StartingAngularVelocity;
+            player.rb.angularVelocity = -player.rb.angularVelocity;
         }
 
         //Sometimes this would trigger twice because the ball falls below the tiles and it hits the tile second the when it comes back up.
