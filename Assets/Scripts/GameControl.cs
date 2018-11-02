@@ -83,6 +83,7 @@ public class GameControl : MonoBehaviour
     //Declare private variables
     private List<GameObject> TilesToDestroy = new List<GameObject>();
     private int ActiveWhiteTiles;
+    private int GreenTile = -1;
 
     // Use this for initialization
 
@@ -130,7 +131,6 @@ public class GameControl : MonoBehaviour
 
     private void Update()
     {
-
         // check if animation has finished playing
         if (AnimBall.activeInHierarchy)
         {
@@ -160,6 +160,26 @@ public class GameControl : MonoBehaviour
     {
         List<int> WhiteTiles = new List<int>();
 
+        //TODO: add a green tile by chance
+        if (GreenTile == -1)
+        {
+            int chance = Random.Range(0, 100);
+            if (chance < GreentileChance)
+            {
+                int index = Random.Range(0, NumOfTiles);
+                while (WhiteTiles.Contains(index))
+                {
+                    index = Random.Range(0, NumOfTiles);
+                }
+                WhiteTiles.Add(index);
+                GreenTile = index;
+            }
+        }
+        else
+        {
+            WhiteTiles.Add(GreenTile);
+        }
+
         //Set a random location for each white tile
         for (int i = 0; i < ActiveWhiteTiles; i++)
         {
@@ -169,20 +189,6 @@ public class GameControl : MonoBehaviour
                 index = Random.Range(0, NumOfTiles);
             }
             WhiteTiles.Add(index);
-        }
-
-        //TODO: add a green tile by chance
-        int chance = Random.Range(0,100);
-        int greentilePos = -1;
-        if (chance < GreentileChance) {
-            int index = Random.Range(0, NumOfTiles);
-            while (WhiteTiles.Contains(index))
-            {
-                index = Random.Range(0, NumOfTiles);
-            }
-            ActiveWhiteTiles++;
-            WhiteTiles.Add(index);
-            greentilePos = index;
         }
 
 
@@ -200,7 +206,7 @@ public class GameControl : MonoBehaviour
             else
             {
                 GameObject obj;
-                if (i == greentilePos)
+                if (i == GreenTile)
                 {
                     obj = Instantiate(TileGreen, transform.position, Quaternion.identity);
                 }
@@ -227,7 +233,14 @@ public class GameControl : MonoBehaviour
     public void ConvertTile(GameObject obj)
     {
         GameObject parentobj = obj.transform.parent.gameObject;
-        ActiveWhiteTiles--;
+        if (obj.tag == "WhiteTile"|| obj.tag == "YellowTile")
+        {
+            ActiveWhiteTiles--;
+        }
+        else if(obj.tag == "GreenTile")
+        {
+            GreenTile = -1;
+        }
 
         //If there are other active white tiles, destroy the one hit by the ball and leave fill the space with a black tile.
         if (ActiveWhiteTiles >= 1)
