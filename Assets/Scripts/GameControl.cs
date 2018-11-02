@@ -88,6 +88,7 @@ public class GameControl : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 300;
         if (PlayerPrefs.GetInt("sound",1) == 0)
         {
             alienhit.volume = 0;

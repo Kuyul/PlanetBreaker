@@ -140,21 +140,29 @@ public class LevelController : MonoBehaviour
             if (j > 0 && j < RotateAlienPercentage)
             {
                 obj = Instantiate(RotateAlien);
+                SetAlienProperties(obj);
             }
             //If j is greater than or equal to 20 (default) and less than 35 spawn power alien
             else if (j >= RotateAlienPercentage && j < RotateAlienPercentage + PowerAlienPercentage)
             {
                 obj = Instantiate(PowerAlien);
+                SetAlienProperties(obj);
             }
             //else spawn shield
-            else
+            else if (j >= RotateAlienPercentage + PowerAlienPercentage)
             {
                 obj = Instantiate(ShieldAlien);
+                SetAlienProperties(obj);
             }
-            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            float AlienSpeed = Random.Range(-30.0f, 30.0f);
-            obj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0,360));
-            rb.angularVelocity = AlienSpeed;
+            
         }
+    }
+
+    private void SetAlienProperties(GameObject obj)
+    {
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        float AlienSpeed = Random.Range(-30.0f, 30.0f);
+        obj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
+        rb.angularVelocity = AlienSpeed;
     }
 }
