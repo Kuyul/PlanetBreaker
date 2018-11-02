@@ -17,7 +17,6 @@ public class LevelController : MonoBehaviour
     public float AlienAngularVelocity;
     public int AlienChance = 10;
 
-    public float planetSpinSpeed; //TODO: remove these later as we won't need it
     public int Health = 10;
     public int SpawnAlien = 1;
     public int ShieldAlienPercentage = 10;
@@ -30,7 +29,6 @@ public class LevelController : MonoBehaviour
     private bool PowerAlienbool = false;
     private bool RotateAlienbool = false;
     private int Total = 0;
-    private List<GameObject> Aliens = new List<GameObject>();
 
     // Use this for initialization
     void Start()
@@ -44,17 +42,20 @@ public class LevelController : MonoBehaviour
 
         float PlanetSpin = 0;
 
+        //Planet starts to spin from stage 5 onwards
+        if (level >= 5)
+        {         
+            PlanetSpin = level;
+            if(level > 40)
+            {
+                PlanetSpin = 40;
+            }
+        }
+
         //Rotate Aliens can appear from stage 15 onwards
         if (level >= 15)
         {
             RotateAlienbool = true;
-        }
-
-        //Planet starts to spin from stage 5 onwards
-        if (level >= 5)
-        {
-           // planetSpinSpeed = Random.Range(-30.0f, 30.0f);
-            PlanetSpin = planetSpinSpeed;
         }
 
         //Power aliens can appear from stage 25 onwards
@@ -75,7 +76,14 @@ public class LevelController : MonoBehaviour
     //This method is called at the start of every level to configure level properties
     public void GenerateLevel(float planetSpin, int health, int alienCount)
     {
-        Planet.angularVelocity = planetSpin;
+        if (Random.Range(0, 2) == 0)
+        {
+            Planet.angularVelocity = planetSpin;
+        }
+        else
+        {
+            Planet.angularVelocity = -planetSpin;
+        }
         HealthLeft = health;
         HealthBar.maxValue = health;
         HealthBar.value = health;
@@ -145,6 +153,7 @@ public class LevelController : MonoBehaviour
             }
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             float AlienSpeed = Random.Range(-30.0f, 30.0f);
+            obj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0,360));
             rb.angularVelocity = AlienSpeed;
         }
     }
