@@ -617,6 +617,7 @@ MonoBehaviour:
   peyellow: {fileID: 1752673918366762, guid: c57e68ab62cc486409da12b56eba2d46, type: 2}
   pewhite: {fileID: 1778662853406760, guid: f66caac30d0218f488ea333a74dc66d9, type: 2}
   peblue: {fileID: 1204203362028262, guid: cb3470f3a531afa48be37b71ee69473c, type: 2}
+  pejewel: {fileID: 1870312145587978, guid: 97b9f9b8691d0a444b103d2396099f42, type: 2}
   pePlayerExplosion: {fileID: 1709921138867090, guid: 60d52902c3b8cab40ae643bfa0a5c56a,
     type: 2}
   peExplosion: {fileID: 1041333844717584, guid: 4de4490d5ff8bdc4f94344246cfc3be5,
