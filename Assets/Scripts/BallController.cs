@@ -206,8 +206,6 @@ public class BallController : MonoBehaviour
         {
             GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
             Destroy(temp, 2);
-            if(gameObject.activeInHierarchy)
-                StartCoroutine(HapticDelay());
         }
         var dmg = (int)Mathf.Pow(2, Lvl);
         GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
@@ -246,11 +244,5 @@ public class BallController : MonoBehaviour
             }
             
         }
-    }
-
-    IEnumerator HapticDelay()
-    {
-        yield return new WaitForSeconds(0.1f);
-        Handheld.Vibrate();
     }
 }
