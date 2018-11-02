@@ -547,7 +547,7 @@ MonoBehaviour:
   - {fileID: 1541510487690716, guid: ec399031d56a02949a03707d770717f4, type: 2}
   TileBlack: {fileID: 1874170170415096, guid: 8486c76e77bf0794eb5c8a3ab16648fe, type: 2}
   TileGreen: {fileID: 1047672292951462, guid: 94886eedea65f8a47bdfdb758ac04ff3, type: 2}
-  GreentileChance: 50
+  GreentileChance: 20
   Menu: {fileID: 1545996952}
   InGame: {fileID: 54904877}
   AnimBall: {fileID: 1567409871}
@@ -1656,10 +1656,13 @@ MonoBehaviour:
   PowerAlien: {fileID: 1444216660855868, guid: 9d10d97dae1cec1448b3dea7e01d3bf9, type: 2}
   PlanetBase: {fileID: 2023594737}
   AlienAngularVelocity: -30
-  AlienChance: 10
+  AlienChance: 100
   planetSpinSpeed: 20
   Health: 10
   SpawnAlien: 1
+  ShieldAlienPercentage: 10
+  PowerAlienPercentage: 15
+  RotateAlienPercentage: 20
 --- !u!4 &355642791
 Transform:
   m_ObjectHideFlags: 0

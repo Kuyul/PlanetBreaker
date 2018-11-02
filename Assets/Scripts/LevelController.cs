@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelController : MonoBehaviour {
+public class LevelController : MonoBehaviour
+{
 
     //Declare public variables
     public Rigidbody2D Planet;
@@ -19,47 +20,51 @@ public class LevelController : MonoBehaviour {
     public float planetSpinSpeed; //TODO: remove these later as we won't need it
     public int Health = 10;
     public int SpawnAlien = 1;
+    public int ShieldAlienPercentage = 10;
+    public int PowerAlienPercentage = 15;
+    public int RotateAlienPercentage = 20;
 
     //Level Properties
     private int HealthLeft = 10;
     private bool ShieldAlienbool = false;
     private bool PowerAlienbool = false;
     private bool RotateAlienbool = false;
+    private int Total = 0;
     private List<GameObject> Aliens = new List<GameObject>();
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         int level = GetLevel();
         //Set health equal to level
-        Health = level;
+        Health = level + 5;
 
         //Set Level Text
         Level.text = "" + level;
 
         float PlanetSpin = 0;
 
-        //testing . . . . . . alien3 appear from lev 2
-
-        if (level >= 2)
+        //Rotate Aliens can appear from stage 15 onwards
+        if (level >= 15)
         {
             RotateAlienbool = true;
         }
 
-        //Power Aliens can appear from stage 21 onwards
-        if (level >= 21)
-        {
-            PowerAlienbool = true;
-        }
-
-        //Planet starts to spin from stage 26 onwards
-        if(level >= 26)
+        //Planet starts to spin from stage 5 onwards
+        if (level >= 5)
         {
             planetSpinSpeed = Random.Range(-30.0f, 30.0f);
             PlanetSpin = planetSpinSpeed;
         }
 
-        //Shield aliens can appear from stage 31 onwards
-        if(level >= 31)
+        //Power aliens can appear from stage 25 onwards
+        if (level >= 25)
+        {
+            PowerAlienbool = true;
+        }
+
+        //Power aliens can appear from stage 35 onwards
+        if (level >= 35)
         {
             ShieldAlienbool = true;
         }
@@ -76,16 +81,16 @@ public class LevelController : MonoBehaviour {
         HealthBar.value = health;
         if (PowerAlienbool)
         {
-            Aliens.Add(PowerAlien);
+            Total += PowerAlienPercentage;
         }
 
         if (ShieldAlienbool)
         {
-            Aliens.Add(ShieldAlien);
+            Total += ShieldAlienPercentage;
         }
-        if(RotateAlienbool)
+        if (RotateAlienbool)
         {
-            Aliens.Add(RotateAlien);
+            Total += RotateAlienPercentage;
         }
     }
 
@@ -94,7 +99,7 @@ public class LevelController : MonoBehaviour {
         HealthLeft -= reduce;
         HealthBar.value = HealthLeft;
 
-        if(HealthLeft <= 0)
+        if (HealthLeft <= 0)
         {
             PlanetBase.SetActive(false);
             Instantiate(GameControl.Instance.peExplosion, PlanetBase.transform.position, Quaternion.identity);
@@ -116,18 +121,31 @@ public class LevelController : MonoBehaviour {
 
     public void SpawnAliens()
     {
-        int i = Random.Range(1,100);
+        int i = Random.Range(1, 100);
         //default chance 10%
-        if(i <= AlienChance)
+        if (i <= AlienChance)
         {
-            if (Aliens.Count > 0)
+            //Total is the sum of all the available proportions of each alien
+            int j = Random.Range(0, Total);
+            GameObject obj;
+            //If j is less than 20 (default) spawn rotate alien
+            if (j < RotateAlienPercentage)
             {
-                int j = Random.Range(0, Aliens.Count);
-                GameObject obj = Instantiate(Aliens[j]);
-                Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-                float AlienSpeed = Random.Range(-30.0f, 30.0f);
-                rb.angularVelocity = AlienSpeed;
+                obj = Instantiate(RotateAlien);
             }
+            //If j is greater than or equal to 20 (default) and less than 35 spawn power alien
+            else if (j >= RotateAlienPercentage && j < RotateAlienPercentage + PowerAlienPercentage)
+            {
+                obj = Instantiate(PowerAlien);
+            }
+            //else spawn shield
+            else
+            {
+                obj = Instantiate(ShieldAlien);
+            }
+            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            float AlienSpeed = Random.Range(-30.0f, 30.0f);
+            rb.angularVelocity = AlienSpeed;
         }
     }
 }
