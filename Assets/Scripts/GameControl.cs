@@ -197,28 +197,30 @@ public class GameControl : MonoBehaviour
             // instantiate black tiles
             if (!WhiteTiles.Contains(i))
             {
-                GameObject obj = Instantiate(TileBlack, transform.position, Quaternion.identity);
-                obj.transform.SetParent(Planet);
-                TilesToDestroy.Add(obj);
-                TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i);
+                GenerateTile(TileBlack, i);
             }
             // instantiate white tiles
             else
             {
-                GameObject obj;
                 if (i == GreenTile)
                 {
-                    obj = Instantiate(TileGreen, transform.position, Quaternion.identity);
+                    GenerateTile(TileGreen, i);
                 }
                 else
                 {
-                    obj = Instantiate(TileWhite[Random.Range(0, TileWhite.Length)], transform.position, Quaternion.identity);
+                    GenerateTile(TileWhite[Random.Range(0, TileWhite.Length)], i);
                 }
-                obj.transform.SetParent(Planet);
-                TilesToDestroy.Add(obj);
-                TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i);
             }
         }
+    }
+
+    //Group tile generation functions
+    private void GenerateTile(GameObject tile, int i)
+    {
+        GameObject obj = Instantiate(TileBlack, transform.position, Quaternion.identity);
+        obj.transform.SetParent(Planet);
+        TilesToDestroy.Add(obj);
+        TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i + Planet.transform.rotation.eulerAngles.z);
     }
 
     public void DestroyTiles()
