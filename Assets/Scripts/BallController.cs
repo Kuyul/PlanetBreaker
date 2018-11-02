@@ -137,8 +137,8 @@ public class BallController : MonoBehaviour
             //If it hits a white tile, the tile changes to a Black Tile
             if (collision.tag == "WhiteTile")
             {
-                SetOrbitLevel(0);
                 TileCommonFunctions(collision);
+                SetOrbitLevel(0);
                 //Particle Effect
                 GameObject temp2 = Instantiate(GameControl.Instance.pewhite, transform.position, Quaternion.identity);
                 Destroy(temp2, 2);
@@ -206,6 +206,7 @@ public class BallController : MonoBehaviour
         {
             GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
             Destroy(temp, 2);
+            StartCoroutine(HapticDelay());
         }
         var dmg = (int)Mathf.Pow(2, Lvl);
         GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
@@ -244,6 +245,12 @@ public class BallController : MonoBehaviour
             }
             
         }
+    }
+
+    IEnumerator HapticDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Handheld.Vibrate();
     }
 
 }
