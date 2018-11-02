@@ -27,8 +27,7 @@ public class BallController : MonoBehaviour
     private bool ShieldActive = false;
 
     private int reverseNumber = 0;
-    private bool Miriclick = false;
-
+ 
     // Use this for initialization
     void Start()
     {
