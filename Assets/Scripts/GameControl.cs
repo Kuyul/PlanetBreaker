@@ -46,6 +46,7 @@ public class GameControl : MonoBehaviour
     public GameObject peyellow;
     public GameObject pewhite;
     public GameObject peblue;
+    public GameObject peblue2;
     public GameObject pejewel;
     public GameObject pePlayerExplosion;
     public GameObject peExplosion;
@@ -65,8 +66,6 @@ public class GameControl : MonoBehaviour
     public Text JewelText;
     public Text LevelText;
     public Text JewelTextMenu;
-    public Text TimerText;
-    public Animator TimerAnim;
 
     //Declare Controllers
     public BallController Ball;

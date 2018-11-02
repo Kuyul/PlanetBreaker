@@ -522,6 +522,7 @@ MonoBehaviour:
   peyellow: {fileID: 1752673918366762, guid: c57e68ab62cc486409da12b56eba2d46, type: 2}
   pewhite: {fileID: 1778662853406760, guid: f66caac30d0218f488ea333a74dc66d9, type: 2}
   peblue: {fileID: 1204203362028262, guid: cb3470f3a531afa48be37b71ee69473c, type: 2}
+  peblue2: {fileID: 1994864298885124, guid: 05da9b6ac4f68c84b9fcdeb3413316bd, type: 2}
   pejewel: {fileID: 1870312145587978, guid: 97b9f9b8691d0a444b103d2396099f42, type: 2}
   pePlayerExplosion: {fileID: 1709921138867090, guid: 60d52902c3b8cab40ae643bfa0a5c56a,
     type: 2}
@@ -539,8 +540,6 @@ MonoBehaviour:
   JewelText: {fileID: 1462742643}
   LevelText: {fileID: 484520627}
   JewelTextMenu: {fileID: 1260089571}
-  TimerText: {fileID: 0}
-  TimerAnim: {fileID: 0}
   Ball: {fileID: 727635541}
   Level: {fileID: 355642790}
   CameraControl: {fileID: 519420030}
@@ -1562,7 +1561,6 @@ MonoBehaviour:
   PlanetBase: {fileID: 2023594737}
   AlienAngularVelocity: -30
   AlienChance: 8
-  planetSpinSpeed: 40
   Health: 10
   SpawnAlien: 1
   ShieldAlienPercentage: 10

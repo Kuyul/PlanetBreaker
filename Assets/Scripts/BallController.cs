@@ -206,6 +206,8 @@ public class BallController : MonoBehaviour
         {
             GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
             Destroy(temp, 2);
+            GameObject temp2 = Instantiate(GameControl.Instance.peblue2, transform.position, Quaternion.identity);
+            Destroy(temp2, 2);
         }
         var dmg = (int)Mathf.Pow(2, Lvl);
         GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
