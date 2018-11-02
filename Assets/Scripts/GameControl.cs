@@ -46,6 +46,7 @@ public class GameControl : MonoBehaviour
     public GameObject peyellow;
     public GameObject pewhite;
     public GameObject peblue;
+    public GameObject pejewel;
     public GameObject pePlayerExplosion;
     public GameObject peExplosion;
     public GameObject peTrail;
