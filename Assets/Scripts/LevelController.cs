@@ -137,7 +137,7 @@ public class LevelController : MonoBehaviour
             int j = Random.Range(0, Total);
             GameObject obj;
             //If j is less than 20 (default) spawn rotate alien
-            if (j < RotateAlienPercentage)
+            if (j > 0 && j < RotateAlienPercentage)
             {
                 obj = Instantiate(RotateAlien);
             }
