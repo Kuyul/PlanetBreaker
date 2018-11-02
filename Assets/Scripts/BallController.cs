@@ -17,11 +17,8 @@ public class BallController : MonoBehaviour
     public PlayerController player;
     public GameObject Shield;
 
-    //Texts
-    public GameObject NiceText;
-    public GameObject ExtremeText;
-    public GameObject MagnificentText;
-    public GameObject TextSpawnPosition;
+    //Emotes
+    public GameObject[] Emotes;
 
     //Declare Private variables
     private int Lvl;
@@ -239,36 +236,18 @@ public class BallController : MonoBehaviour
         Lvl = level;
         FallVector = new Vector3(0, FallSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
         UpVector = new Vector3(0, BounceSpeed, 0) * (OrbitHeights[Lvl] / OrbitHeights[0]);
-        if (Lvl == 0)
+
+        for (int i = 0; i < Emotes.Length; i++)
         {
-        }
-        else
-        {
-            if (gameObject.activeInHierarchy)
-            {
-                StartCoroutine(CreateText(Lvl));
+            if (i + 1 == Lvl) {
+                Emotes[i].SetActive(true);
             }
+            else
+            {
+                Emotes[i].SetActive(false);
+            }
+            
         }
     }
 
-    IEnumerator CreateText(int lvl)
-    {
-        GameObject obj;
-
-        if (lvl == 1)
-        {
-            obj = Instantiate(NiceText, TextSpawnPosition.transform.position, Quaternion.identity);
-        } else if (lvl == 2)
-        {
-            obj = Instantiate(ExtremeText, TextSpawnPosition.transform.position, Quaternion.identity);
-        }
-        else
-        {
-            obj = Instantiate(MagnificentText, TextSpawnPosition.transform.position, Quaternion.identity);
-        }
-
-        yield return new WaitForSeconds(0.9f);
-
-        Destroy(obj);
-    }
 }

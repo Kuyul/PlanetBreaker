@@ -22,6 +22,7 @@ public class GameControl : MonoBehaviour
     public GameObject Player;
     public GameObject Mutebutton;
     public GameObject UnMutebutton;
+    public GameObject Healthbar;
 
     public Transform PlayerBall;
 
@@ -136,6 +137,7 @@ public class GameControl : MonoBehaviour
             {
                 AnimBall.SetActive(false);
                 Player.SetActive(true);
+                Healthbar.SetActive(true);
                 Destroy(CameraControl.GetComponent<Animator>());
             }
         }
@@ -177,6 +179,7 @@ public class GameControl : MonoBehaviour
             {
                 index = Random.Range(0, NumOfTiles);
             }
+            ActiveWhiteTiles++;
             WhiteTiles.Add(index);
             greentilePos = index;
         }
