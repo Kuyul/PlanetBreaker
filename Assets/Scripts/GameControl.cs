@@ -217,7 +217,7 @@ public class GameControl : MonoBehaviour
     //Group tile generation functions
     private void GenerateTile(GameObject tile, int i)
     {
-        GameObject obj = Instantiate(TileBlack, transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(tile, transform.position, Quaternion.identity);
         obj.transform.SetParent(Planet);
         TilesToDestroy.Add(obj);
         TilesToDestroy[i].transform.eulerAngles = new Vector3(0, 0, (360 / NumOfTiles) * i + Planet.transform.rotation.eulerAngles.z);
