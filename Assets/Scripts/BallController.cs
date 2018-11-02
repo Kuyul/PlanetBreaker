@@ -188,11 +188,8 @@ public class BallController : MonoBehaviour
             {
                 TileCommonFunctions(collision);
                 GameControl.Instance.AddJewel(1);
-                //Particle Effect
                 GameObject temp2 = Instantiate(GameControl.Instance.pejewel, transform.position, Quaternion.identity);
                 Destroy(temp2, 2);
-                player.AddAngularVelocity();
-                //Increment orbit height
             }
         }
     }
