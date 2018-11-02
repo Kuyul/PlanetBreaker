@@ -112,28 +112,28 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Alien1")
-        {
-            AlienCommonFunctions(collision);
-            SetOrbitLevel(3);
-        }
-        if (collision.tag == "Alien2")
-        {
-            AlienCommonFunctions(collision);
-            ShieldActive = true;
-            Shield.SetActive(true);
-        }
-        if (collision.tag == "Alien3")
-        {
-            AlienCommonFunctions(collision);
-            reverseNumber += 1;
-            GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180 * reverseNumber);
-            player.rb.angularVelocity = -player.rb.angularVelocity;
-        }
-
         //Sometimes this would trigger twice because the ball falls below the tiles and it hits the tile second the when it comes back up.
         if (Down)
         {
+            if (collision.tag == "Alien1")
+            {
+                AlienCommonFunctions(collision);
+                SetOrbitLevel(3);
+            }
+            if (collision.tag == "Alien2")
+            {
+                AlienCommonFunctions(collision);
+                ShieldActive = true;
+                Shield.SetActive(true);
+            }
+            if (collision.tag == "Alien3")
+            {
+                AlienCommonFunctions(collision);
+                reverseNumber += 1;
+                GameControl.Instance.PlayerBall.localEulerAngles = new Vector3(0, 0, 180 * reverseNumber);
+                player.rb.angularVelocity = -player.rb.angularVelocity;
+            }
+
             //If it hits a white tile, the tile changes to a Black Tile
             if (collision.tag == "WhiteTile")
             {
@@ -206,7 +206,8 @@ public class BallController : MonoBehaviour
         {
             GameObject temp = Instantiate(GameControl.Instance.peblue, transform.position, Quaternion.identity);
             Destroy(temp, 2);
-            StartCoroutine(HapticDelay());
+            if(gameObject.activeInHierarchy)
+                StartCoroutine(HapticDelay());
         }
         var dmg = (int)Mathf.Pow(2, Lvl);
         GameControl.Instance.ReduceHealth(dmg); //Reduce planet health
@@ -252,5 +253,4 @@ public class BallController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Handheld.Vibrate();
     }
-
 }
